@@ -1,0 +1,392 @@
+
+* TCP/IP Basics
+
+** What Is TCP/IP?
+*** Learning Objectives
+    + Networks and network protocols
+    + History of TCP/IP
+    + Important features of TCP/IP
+
+      *Transmission Control Protocol/Internet Protocol (TCP/IP)* is a _protocol system_ --- a
+      collection of protocols that supports a network communications.  The answer to the question
+      _What is a protocol?_ begins with the question _What is a network?_
+
+      This section describes what a *network* is and shows why networks _need_ *protocols*.  This
+      section explains what *TCP/IP* is, what it does, and where it began.
+
+      Afterm this section, you should be able to:
+
+      - Define the term _network_
+
+      - Explain what a network _protocol suite_ is
+
+      - Discuss the history of TCP/IP
+
+      - List some important features of TCP/IP
+
+      - Identify the organizations that oversee TCP/IP and the Internet
+
+      - Explain what *RFCs* are and where to find them
+
+*** Networks and Protocols
+*** Development of TCP/IP
+
+*** TCP/IP Features
+
+*** Standards Organizations and RFCs
+
+** How TCP/IP Works
+
+*** Objectives
+
+    + TCP/IP protocol system
+    + The OSI Model
+    + Data packages
+    + How TCP/IP protocols interact
+
+      TCP/IP is a system (suite) of protocols; a protocol is a system of rules and procedures.  The
+      hardware and software of the communicating computers carry out the rules of TCP/IP
+      communications --- the user does not have to get involved with the details.  A working
+      knowledge of TCP/IP is essential if you want to navigate through the configuration and
+      troubleshoot problems with TCP/IP networks.
+
+      At the completion:
+
+      - Describe the layers of the TCP/IP protocol system, and the purpose of each layer
+
+      - Describe the layers of the OSI model and explain how the OSI layers relate to TCP/IP
+
+      - Explain TCP/IP protocol headers and how data is enclosed with header information at each
+        layer of the protocol stack
+
+      - Name the data package at each layer of the TCP/IP stack
+
+      - Discuss the TCP, UDP, and IP protocols and how they work together to provide TCP/IP
+        functionality
+
+*** The TCP/IP Protocol System
+
+*** TCP/IP and the OSI Model
+
+*** Data Packages
+
+*** TCP/IP Networking
+
+* TCP/IP Protocol System
+
+** The Network Access Layer
+
+*** Protocols and Hardware
+
+*** Network Access Layer and the OSI Model
+
+*** Network Architecture
+
+*** Physical Addressing
+
+*** Ethernet
+
+*** Ethernet Frame
+
+** The Internet Layer
+
+*** IP Addresses
+
+*** Addressing and Delivery
+
+*** Internet Protocol
+
+*** Address Resolution Protocol
+
+*** Reverse ARP
+
+*** Internet Control Message Protocol
+
+** Subnetting and CIDR
+
+*** Subnets
+
+*** Dividing the Network
+
+*** Subnet Mask
+
+*** CIDR
+
+** The Transport Layer
+
+*** The Transport Layer
+
+*** Transport Layer Concepts
+
+*** Understanding TCP and UDP
+
+*** Firewals and Ports
+
+** The Application Layer
+
+*** The Application Layer
+
+*** The TCP/IP Application Layer and OSI
+
+*** Network Services
+
+*** APIs and the Application Layer
+
+*** TCP/IP Utilities
+
+* Networking with TCP/IP
+** Routing
+
+*** Routing in TCP/IP
+
+*** Routing in Complex Networks
+
+*** Examining Interior Networks
+
+*** Exterior Routers: BGP
+
+*** Classless Routing
+
+*** Higher in the Stack
+
+** Getting Connected
+
+*** Cable Broadband
+
+*** Digital Subscriber Line
+
+*** Wide Area Networks
+
+*** Wireless Networking
+
+*** Dial-Up Networking
+
+*** Connectivity Devices
+
+*** Switching Versus Routing
+
+** Name Resolution
+
+*** Name Resolution
+
+*** Name Resolution Using Hosts Files
+
+*** DNS Name Resolution
+
+*** Registering a Domain
+
+*** Name Server Types
+
+*** Dynamic DNS
+
+*** NetBIOS Name Resolution
+
+** TCP/IP Security
+
+*** What is a Firewall
+
+*** Attack Techniques
+
+*** What Do Intruders Want?
+
+** Configuration
+
+*** Getting on the Network
+
+*** The Case for Server-Supplied IP Addresses
+
+*** What is DHCP?
+
+*** How DHCP Works
+
+*** DHCP Server Configuration
+
+*** Network Address Translation
+
+*** Zero Configuration
+
+*** Configuring TCP/IP
+
+** IPv6
+
+*** Why a New IP?
+
+*** IPv6 Header Format
+
+*** IPv6 Addressing
+
+*** Subnetting
+
+*** Multicasting
+
+*** Link Local
+
+*** Neighbor Discovery
+
+*** Autoconfiguration
+
+*** IPv6 and Quality of Service
+
+*** IPv6 with IPv4
+
+*** IPv6 Tunnels
+
+* Tools and Services
+
+** Classic Tools
+
+*** Connectivity Problems
+
+*** Protocol Dysfunction and Misconfiguration
+
+*** Line Problems
+
+*** Name Resolution Problems
+
+*** Network Performance Problems
+
+*** Telnet
+
+*** Berkely Remote Utilities
+
+*** Secure Shell
+
+*** Network Management
+
+** Classic Services
+
+*** HTTP
+
+*** Email
+
+*** FTP
+
+*** Trivial File Transfer Protocol
+
+*** File and Print Services
+
+*** Lightweight Directory Access Protocol
+
+*** Remote Control
+
+* The Internet
+
+** The Internet
+
+*** How the Internet Looks
+
+*** What Happens on the Internet
+
+*** URIs and URLs
+
+** HTTP HTML WWW
+
+*** What is the WWW?
+
+*** Understanding HTML
+
+*** Cascading Style Sheets
+
+*** Understanding HTTP
+
+*** Scripting
+
+*** Web Browsers
+
+*** The Semantic Web
+
+*** XHTML
+
+*** HTML5
+
+** Web Services
+
+*** Content Management Systems
+
+*** Socal Networking
+
+*** Peer-to-Peer
+
+*** Understanding Web Services
+
+*** XML
+
+*** SOAP
+
+*** WSDL
+
+*** Web Service Stacks
+
+*** REST
+
+*** E-Commerce
+
+** Encryption, Tracking, and Privacy
+
+*** Encryption and Secrecy
+
+*** Tracking
+
+*** Anonymity Networks
+
+* TCP/IP At Work
+
+** Email
+
+*** What is Email?
+
+*** Email Formats
+
+*** How Email Works
+
+*** Simple Mail Transfer Protocol
+
+*** Retrieving the Mail
+
+*** Email Clients
+
+*** Webmail
+
+*** Spam
+
+*** Phishing
+
+** Streaming and Casting
+
+*** The Streaming Problem
+
+*** Multimedia Files
+
+*** Real-Time Transportg Protocol --- Streaming Over UDP
+
+*** RTMP --- Streaming over TCP
+
+*** SCTP and DCCP --- Replacing the Transport Layer
+
+*** Streaming over HTTP
+
+*** HTML5 and Multimedia
+
+*** Podcasting
+
+*** Voice Over IP
+
+** The Cloud
+
+*** What Is the Cloud?
+
+*** Private Clouds
+
+*** Future of Computing
+
+** IoT
+
+*** What is the Internet of Things
+
+*** IoT Platforms
+
+*** Up Close: MQTT
+
+*** RFID
+
+** Implementing a TCP/IP Network
