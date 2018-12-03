@@ -1,8 +1,20 @@
+#+TITLE: All About TCP/IP
+#+AUTHOR: WLHarvey4
+#+TEXINFO_FILENAME:tcp-ip.info
+#+TEXINFO_CLASS: info
+#+TEXINFO_HEADER:
+#+TEXINFO_POST_HEADER:
+#+SUBTITLE: And Networking
+#+SUBAUTHOR:
+#+TEXINFO_DIR_CATEGORY: Networking
+#+TEXINFO_DIR_TITLE:TCP/IP
+#+TEXINFO_DIR_DESC:All About TCP/IP
+#+TEXINFO_PRINTED_TITLE:All About TCP/IP
 
-* TCP/IP Basics
+* Part I  --- TCP/IP Basics
 
 ** What Is TCP/IP?
-*** Learning Objectives
+*** Objectives
     + Networks and network protocols
     + History of TCP/IP
     + Important features of TCP/IP
@@ -72,9 +84,25 @@
 
 *** TCP/IP Networking
 
-* TCP/IP Protocol System
+* Part II --- TCP/IP Protocol System
 
 ** The Network Access Layer
+
+*** Objectives
+    + Physical addresses
+    + Network architectures
+    + Ethernet frames
+
+    At the base of the TCP/IP protocol stack is the *Network Access layer*, the collection of
+    services and specifications that provide and manage access to the network hardware.  This
+    section teaches about the duties of the Network Access layer and how the Network Access layer
+    relates to the OSI model.  This section also looks at the network technology known as
+    *ethernet*.
+
+    - Explain the Network Access layer
+    - Discuss how TCP/IP's Network Access layer relates to the OSI networking model
+    - Describe the purpose of a network architecture
+    - List the contents of an ethernet frame
 
 *** Protocols and Hardware
 
@@ -87,11 +115,35 @@
 *** Ethernet
 
 *** Ethernet Frame
-
 ** The Internet Layer
 
-*** IP Addresses
+*** Objective
+    + IP addresses
+    + The IP header
+    + ARP
+    + ICMP
 
+    Computers on a single network segment such as abn ethernet local area netork (LAN) can
+    communicate with each other using the physical addresses available at the Network Access
+    layer.  How does an email message get from Carolina to California and arrive precisely at its
+    destination?  The protocols at the *Internet layer* provide for delivery beyond the local
+    network segment.  This section discusses the important *Internet layer* protocols /IP/, /ARP/,
+    and /ICMP/.
+
+    The focus of this section is on the 32-bit binary IPv4 addresses used throughout the Internet.
+    The world is currently in transition to a new 128-bit address system known as IPv6, which
+    offers enhanced capabilities and a much larger address space.  See Chapter 13, ``IPv6: The Next
+    Generation,'' for more on IPv6.
+
+    - Explain the purpose of IP, ARP, and ICMP
+    - Explain what a network ID and host ID are
+    - Explain what an octet is
+    - Convert a dotted-decimal address to its binary equivalent
+    - Convert a 32-bit binary address into a dotted-decimal notation
+    - Describe the contents of an IP header
+    - Explain the purpose of the IP address
+
+*** IP Addresses
 *** Addressing and Delivery
 
 *** Internet Protocol
@@ -104,8 +156,25 @@
 
 ** Subnetting and CIDR
 
-*** Subnets
+*** Objectives
+    + Subnetting
+    + Subnet masks
+    + CIDR notation
 
+    Subnetting evolved as a means for using IP addresses to break up a physical network into
+    smaller logical entities called *subnets*.  Later developments, such as *Classess Inter-Domain
+    Routing (CIDR)* and IPv6 have reduced the need for the classical approach to subnetting, but
+    these later techniques borrow from the basic subnetting principles, and no discussion of TCP/IP
+    is complete without a description of subnetting.  This section addresses the needs and benefits
+    of subnetting on IPv4 networks and describes the steps and procedures you should follow to
+    generate a subnet mask.
+
+    - Explain how subnets are used
+    - Explain the benefits of subnetting
+    - Develop a subnet mask that meets business needs
+    - Describe supernetting and CIDR notation
+
+*** Subnets
 *** Dividing the Network
 
 *** Subnet Mask
@@ -113,6 +182,26 @@
 *** CIDR
 
 ** The Transport Layer
+
+*** Objectives
+    + Connection-oriented and connectionless protocols
+    + Ports and sockets
+    + TCP
+    + UDP
+
+    The *Transport layer*  provides an interface for network applications and offers optional error
+    checking, flow control, and verification for network transmissions.  This hour describes some
+    important Transport layer concepts and introduces the TCP/IP and UDP protocols.
+
+    - Describe the basic duties of the Transport layer
+    - Explain the difference between a connection-oriented protocol and a connectionless protocol
+    - Explain how Transport layer protocols provide an interface to network applications through
+      ports and sockets
+    - Describe the differences between TCP and UDP
+    - Identify the fields that make up the TCP header
+    - Describe how TCP opens and closes a connection
+    - Describe how TCP sequences and acknowledges data transmissions
+    - Identify the four fields that comprise the UDP header
 
 *** The Transport Layer
 
@@ -124,6 +213,21 @@
 
 ** The Application Layer
 
+*** Objectives
+    + Network services
+    + APIs
+    + TCP/IP utilities
+
+    At the top of the TCP/IP stack is the *Application layer*, a loose collection of networking
+    components perched above the Transport layer.  This section describes some of the kinds of
+    Application layer components and shows how those components help bring the user to the
+    network.  Specifically this section examines Application layer services, operating
+    environments, and network applications.
+
+    - Describe the Application layer
+    - Describe some of the Application layer's network services
+    - List some of TCP/IP's important utilities
+
 *** The Application Layer
 
 *** The TCP/IP Application Layer and OSI
@@ -134,8 +238,25 @@
 
 *** TCP/IP Utilities
 
-* Networking with TCP/IP
+* Part III --- Networking with TCP/IP
 ** Routing
+
+*** Objectives
+    + IP forwarding
+    + Direct and indirect routing
+    + Routing protocols
+
+    The infrastructure that supports global networks such as the Internet could not function
+    without routers.  TCP/IP was designed to operate with routers, and no discussion of TCP/IP is
+    complete without a discussion of what the routers are doing.  A router participates in a
+    complex process of communication with other routers on the network to determine the best path
+    to each destination.  In this section you learn about routers, routing tables, and routing
+    protocols.
+
+    - Describe IP forwarding and how it works
+    - Distinguish between distance-vector routing and link-state routing
+    - Discuss the roles of core, interior, and exterior routers
+    - Describe the common interior routing protocols RIP and OSPF
 
 *** Routing in TCP/IP
 
@@ -150,6 +271,33 @@
 *** Higher in the Stack
 
 ** Getting Connected
+
+*** Objectives
+    + Broadband technologies like cable and DSL
+    + Wide area networks
+    + Wireless networking
+    + Dial-up networking
+    + Connectivity devices
+
+    The Network Access layer manages the interface with the physical network.  But what exactly is
+    the physical network?  After all the conceptual sketches of bits, bytes, ports, and protocol
+    layers, sooner or later an Internet connection requires some form of device connecting a
+    computer or local network segment to the larger network beyond.  This section examines some of
+    the devices and processes supporting access to the TCP/IP networks.
+
+    - Understand the basics of cable broadband
+    - Discuss defining features of DSL
+    - Describe the topologies of wireless networks and the elements and the function of wireless
+      security schemes such as WEP and WPA2
+    - Describe how computers communicate over phone lines with dial-up networking
+
+    This section introduces some of the other connectivity devices (beyond routers) commonly found
+    on TCP/IP networks, such as /switches/, /hubs/, and /bridges/.  These hardware-based
+    technologies inhabit the lowest level of the TCP/IP protocol stack (Layers 1 and 2 of the Open
+    Systems Interconnction [OSI] stack) and are largely invisible to protocols and applications
+    operating at higher levels.  A web browser is still a web browser, regardless of whether the
+    computer running the browser application is connected to a switch, cable modem, digital
+    subscriber line (DSL), or wireless access point.
 
 *** Cable Broadband
 
@@ -167,6 +315,24 @@
 
 ** Name Resolution
 
+*** Objectives
+    + Hostname resolution
+    + DNS
+    + DNSSEC
+    + Dynamic DNS
+    + NetBIOS
+
+    The name resolution process accepts a name for a computer and attempts to resolve the name to
+    the corresponding address.  In this section you learn about *hostnames*, *domain names*, and
+    *fully qualified domain names (FQDNs)*.  This section also introduces the alternative *NetBIOS
+    name resolution system* used on some lagacy Microsoft networks.
+
+    - Explain how name resolution works
+    - Explain the differences between hostnames, domain names, and FQDNs
+    - Describe hostname resolution
+    - Describe DNS name resolution
+    - Describe the NetBIOS name resolution
+
 *** Name Resolution
 
 *** Name Resolution Using Hosts Files
@@ -183,6 +349,20 @@
 
 ** TCP/IP Security
 
+*** Objectives
+    + Firewalls and proxy service
+    + Network intrusion techniques
+    + Network security best practices
+
+    This section introduces some tools and techniques for protecting TCP/IP networks, and explores
+    some techniques the intruders use to slip past Internet defenses.  The first section begins
+    with a look at one of the most important components of any security system, the *network
+    firewall*.
+
+    - Explain how a firewall works
+    - Describe a proxy server and reverse proxy server
+    - Discuss some of the most common network attack techniques and what to do about them
+
 *** What is a Firewall
 
 *** Attack Techniques
@@ -190,6 +370,23 @@
 *** What Do Intruders Want?
 
 ** Configuration
+
+*** Objectives
+    + Dynamic address assignment
+    + DHCP
+    + NAT
+    + Zeroconf
+
+    In the old days every client computer held a static IP address defined somewhere within a
+    configuration file, and to change the configurationb, the system administerator had to go
+    change the file.  Networks today, however, require a more versatile and convenient approach,
+    and most computers operate through some form of dynamic or automatic configuration.  This
+    section looks at some common techniques for configuring TCP/IP networking.
+
+    - Describe DHCP and the benefits it provides
+    - Describe the process of leasing an IP address through DHCP
+    - Describe the purpose of Network Address Translation
+    - Show how computers use the zero-configuration protocols
 
 *** Getting on the Network
 
@@ -208,6 +405,27 @@
 *** Configuring TCP/IP
 
 ** IPv6
+
+*** Objectives
+    + The reasons for IPv6
+    + IPv6 header format
+    + IPv6 addressing
+    + Subnetting
+    + Multicasting
+    + Neighbor discovery
+    + IPv6 tunnels
+
+    Because the Internet keeps changing, the protocols that govern Intern communication must also
+    keep changing.  The Internet Protocol (IP), which defines the all-important IP address system,
+    has been poised for an upgrade for years.  This section looks at what's ahead for the next
+    generation of IP.
+
+    - Discuss the reasons why a new IP address system is necessary
+    - Describe the fields of the IPv6 header
+    - Apply the conventions for writing and simplifying IPv6 address
+    - Map existing IPv4 addresses to the IPv6 address space
+    - Understant IPv6 multicasting and neighbor discovery
+    - Describe soem popular IPv6 tunnel options
 
 *** Why a New IP?
 
@@ -231,9 +449,34 @@
 
 *** IPv6 Tunnels
 
-* Tools and Services
+* Part IV --- Tools and Services
 
 ** Classic Tools
+
+*** Objectives
+    + Protocol problems
+    + Line problems
+    + Name resolution problems
+    + Network performance problems
+    + Telnet
+    + SSH
+    + SNMP
+    + RMON
+
+    The TCP/IP environment includes a number of standard utilities for configuring, managing, and
+    trouble-shootinbg network connections.  Other classic tools manage tasks such as remote access
+    and monitoring.  These TCP/IP utilities date back to the days before the birth of the modern
+    graphical user interface, and many of them are designed to operate from the command line.  This
+    section looks at some utilities you can use to troubleshoot, configure, monitor, and manage
+    TCP/IP.  Other management and troubleshooting tools exist---many of them expensive proprietary
+    applications with sophisticated graphic interfaces and other advanced features---but the
+    emphasis of this section is on classic free tools that evolved around TCP/IP and form a sort of
+    universal toolkit for dealing with networking problems.
+
+    - Identify and describe common TCP/IP connectivity utilities
+    - Use connectivity utilities to troubleshoot problems
+    - Explain the purpose of SSH and Telnet
+    - Describe some common network management protocols
 
 *** Connectivity Problems
 
@@ -255,6 +498,40 @@
 
 ** Classic Services
 
+*** Objectives
+    + FTP
+    + TFTP
+    + NFS
+    + SMB and CIFS
+    + LDAP
+    + Remote Control
+
+    If you are willing to write a server application, write a client application, and string some
+    network cable, you can create tools for a vast range of purposes.  Most people, however, prefer
+    to rely on tools that are already written.  At an earlier and more experimental age, a wider
+    range of more primitive services played an important role on the Internet.  The first edition
+    of this book even included descriptions of some of these services, such as /Archie/,
+    /Veronica/, and /Gopher/, all of which have disappeared and been replaced by the
+    super-versatile /Hypertext Transfer Protocol (HTTP) service/ at the heart of what we know as
+    the World Wide Web.  This hour rounds up some of the most important standard services that are
+    at work right now on TCP/IP networks.  In terms of the protocol system, these services all
+    operate at the Application layer and listen for requests through the Transport layer ports.
+    These tools make up a vast portion of Internet activity, and they command a large share of
+    attention from IT professionals.
+
+    - HTTP
+    - Email
+    - FTP file transfer
+    - File and print services
+    - LDAP
+    - IRC and IM messaging
+
+    Many of the tools that appear as separate activities on the Web, such as social networking and
+    streaming, are often extensions of the web infrastructure supported by HTTP.  Later sections
+    look at HTTP and email.  This section focuses on services available to users who are already
+    connected and making choices about their network activities.  Equally important are background
+    services the user doesn't see, such as domain name system (DNS) and DHCP.
+
 *** HTTP
 
 *** Email
@@ -271,7 +548,20 @@
 
 * The Internet
 
-** The Internet
+** Part V --- The Internet
+
+*** Objectives
+    + Internet topology
+    + IXPs and POPs
+    + URIs and URLs
+
+    The ever-expanding Internet is the world's biggest example of a TCP/IP network.  This section
+    provides a brief overview of the Internet's structure.  This discussion of the Internet
+    continues over the next two sections, which cover the World Wide Web as well as HTML 5 and web
+    services.
+
+    - Briefly describe the structure of the Internet
+    - Recognize and describe the components of a uniform resource identifier
 
 *** How the Internet Looks
 
@@ -280,6 +570,24 @@
 *** URIs and URLs
 
 ** HTTP HTML WWW
+
+*** Objectives
+    + HTML
+    + HTTP
+    + Web browsers
+    + The semantic web
+    + XHTML
+    + HTML5
+
+    The World Wide Web began as a universal graphic display framework for the Internet.  Since its
+    inception, the Web has come to dominate public percpetions of the Internet, and it has
+    revolutionized the way we think about application interfaces.  This section provides an
+    introduction to HTTP, HTML, and the Web.
+
+    - Show how the World Wide Web works
+    - Build a basic web page using text and HTML tags
+    - Discuss the HTTP protocol and describe how it works
+    - Explain the purpose of the semantic web
 
 *** What is the WWW?
 
@@ -300,6 +608,31 @@
 *** HTML5
 
 ** Web Services
+
+*** Objectives
+    + Content management systems
+    + Peer-to-peer networking
+    + Web services
+    + XML
+    + SOAP
+    + WSDL
+    + REST
+    + Web transactions
+
+    The technologies of the Web have led to a revolution in software development.  The simple Web
+    server, which is actually an HTTP server, forms the foundation for a wonderland of applications
+    and services made available through the elegant web browser interface.  This section describes
+    some of the web applications you interact with every day, such as *content management systems*,
+    *wikis*, and *blogs*.  You'll also learn about the powerful Web service architecture, which
+    lets the programmer leverage the tools of the Web for complex tasks never envisioned by the
+    creators of Hyptertext Markup Language (HTML), and you'll get a quick look at how e-commerce
+    websites process web transactions.
+
+    - Discuss blogs, wikis, and social networking sites
+    - Understand how a peer-to-peer network works
+    - Discuss the web service architecture
+    - Understand the role of XML, SOAP, WSDL, and REST in the service paradigm
+    - Describe how e-commerce websites process monetary transactions
 
 *** Content Management Systems
 
@@ -323,15 +656,51 @@
 
 ** Encryption, Tracking, and Privacy
 
+*** Objectives
+    + Encryption
+    + Digital signatures
+    + VPNs
+    + Kerberos
+    + Web tracking
+    + Cookies
+    + Anonymity Networks
+
+    The Internet is a wide open place, where attackers, eavesdroppers, advertisers, and spies have
+    manyi reasons to watch what you do.  Keeping intruders off your network is only part of the
+    security challenge.  This section describes how encryption works with the Internet protocols to
+    protect your data in transit and verify your identify to remote users.  On today's Internet,
+    even ordinary web surfing can lead to some significant data collection.  This section presents
+    web tracking, browser cookies, and anonymity networks.
+
+    - Explain the difference between symnmetric and asymmetric encryption
+    - Describe digital certificates
+    - Discuss the IPsec and TLS security protocols
+    - Describe some common methods for tracking on the web
+    - Explain what an anonymity network is and how it works
+
 *** Encryption and Secrecy
 
 *** Tracking
 
 *** Anonymity Networks
 
-* TCP/IP At Work
+* Part VI --- TCP/IP At Work
 
 ** Email
+
+*** Objectives
+   + Email
+   + SMTP
+   + Spam
+
+   This section introduces some important email concepts and shows how electronic mail services
+   operate on a TCP/IP network.
+
+   - Describe the parts of an email message
+   - Discuss the email delivery process
+   - Describe how SMTP transmission works
+   - Discuss the mail retrieval protocols POP3 and IMAP4
+   - Describe the role of an email application
 
 *** What is Email?
 
@@ -353,6 +722,24 @@
 
 ** Streaming and Casting
 
+*** Objectives
+    + Streaming protocols
+    + Multimedia links
+    + Podcasting
+    + Voice over IP
+
+    New ideas and new protocols were necessary to usher in the era of Internet streaming.  This
+    section looks at multimedia technologies for the Internet.
+
+    - Describe the UDP-based RTP and its helper protocols
+    - Describe the RTMP and streaming over TCP
+    - Discuss the Transport layer alternatives SCTP and DCCP
+    - Describe Adaptive Bitrate streaming over HTTP
+    - Describe the new multimedia features of HTML5, including Media Source Extensions and the
+      ~<video>~ element
+    - Explain what podcasting is and how it works
+    - Describe some important VoIP protocols
+
 *** The Streaming Problem
 
 *** Multimedia Files
@@ -373,6 +760,23 @@
 
 ** The Cloud
 
+*** Objectives
+    + Software as a Service
+    + Infrastructure as a Service
+    + Platform as a Service
+    + Virtual hosting
+    + The elastic cloud
+
+    Everyone is talking about /the cloud/, but the term *cloud computing* can have different
+    meanings depending on the context.  This section studies the cloud from the viewpoints of the
+    end user and IT specialist.
+
+    - Explain why Software as a Service tools are gaining popularity in the mobile era
+    - Define SaaS, IaaS, and PaaS cloud services
+    - Describe how data centers use virtualization
+    - Describe elastic hosting
+    - Explain how Platform as a Service differs from EC2-style elastic cloud services
+
 *** What Is the Cloud?
 
 *** Private Clouds
@@ -380,6 +784,25 @@
 *** Future of Computing
 
 ** IoT
+
+*** Objectives
+    + What is the Internet of Things
+    + IoT alternatives
+    + MQTT
+    + RFID
+
+    As TCP/IP networking gets bigger, it gets smaller.  Networking began as a tool for big
+    computers to talk to each other, and it grew into a tool for small computers to talk to each
+    other.  At some point, computers started talking to really really small computers, like tablets
+    and handheld devices.  In the dreamy market-speak of the high-tech industry, the network of the
+    future will talk to /everything/, but perhaps a better description would be /lots and lots of
+    things/.  This hour describes the Internet of Things, a collection of emerging technologies
+    designed to let the network interact with electrical objects throughout the build environmenht.
+
+    - Define the Internet of Things (IoT)
+    - Explain the differen between closed and open IoT systems
+    - Describe how the MQTT protocol supports IoT implmentations
+    - Discuss the Radio Frequency Identification (RFID)
 
 *** What is the Internet of Things
 
@@ -390,3 +813,75 @@
 *** RFID
 
 ** Implementing a TCP/IP Network
+
+*** Objectives
+    + TCP/IP in action
+    + Life as a network admin
+
+    The preceding sections introduced many of the important components that make up a TCP/IP
+    network.  In this section, you witness many of these components in a real, although
+    hypothetical situation.  At the completion of this hour, you'll be able to describe how the
+    components of a TCP/IP network interact.
+
+* Answers to Quizzes and Exercises
+  :PROPERTIES:
+  :APPENDIX: t
+  :END:
+
+** What Is TCP/IP
+
+** How TCP/IP Works
+
+** The Network Access Layer
+
+** The Internet Layer
+
+** Subnetting and CIDR
+
+** The Transport Layer
+
+** The Application Layer
+
+** Routing
+
+** Getting Connected
+
+** Name Resolution
+
+** TCP/IP Security
+
+** Configuration
+
+** IPv6 The Next Generation
+
+** Classic Tools
+
+** Classic Services
+
+** The Internet
+
+** HTTP, HTML, and the World Wide Web
+
+** Web Services
+
+** Encryption, Tracking, and Privacy
+
+** Email
+
+** Streaming and Casting
+
+** Living in the Cloud
+
+** Internet of Things
+
+** Implmenting a TCP/IP Network
+
+* Sources
+  :PROPERTIES:
+  :APPENDIX: t
+  :END:
+
+* Index
+  :PROPERTIES:
+  :UNNUMBERED: t
+  :END:
