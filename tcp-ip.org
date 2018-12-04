@@ -11,14 +11,23 @@
 #+TEXINFO_DIR_DESC:All About TCP/IP
 #+TEXINFO_PRINTED_TITLE:All About TCP/IP
 
-* Part I  --- TCP/IP Basics
+* Part I    --- TCP/IP Basics
 
-** What Is TCP/IP?
-*** Objectives
+This section discusses the basics of TCP/IP and how it works.
+** What TCP/IP Is
+@@texinfo: @heading Objectives@@
     + Networks and network protocols
     + History of TCP/IP
     + Important features of TCP/IP
 
+#+CINDEX: Transmission Control Protocol/Internet Protocol
+#+CINDEX: TCP/IP
+#+CINDEX: history of TCP/IP
+#+CINDEX: protocol
+#+CINDEX: protocol suite
+#+CINDEX: network
+#+CINDEX: RFC
+@@texinfo:@heading Summary@@
       *Transmission Control Protocol/Internet Protocol (TCP/IP)* is a _protocol system_ --- a
       collection of protocols that supports a network communications.  The answer to the question
       _What is a protocol?_ begins with the question _What is a network?_
@@ -26,43 +35,107 @@
       This section describes what a *network* is and shows why networks _need_ *protocols*.  This
       section explains what *TCP/IP* is, what it does, and where it began.
 
-      Afterm this section, you should be able to:
+      @@texinfo: @subheading After studying this section, you should be able to:@@
 
       - Define the term _network_
-
       - Explain what a network _protocol suite_ is
-
       - Discuss the history of TCP/IP
-
       - List some important features of TCP/IP
-
       - Identify the organizations that oversee TCP/IP and the Internet
-
       - Explain what *RFCs* are and where to find them
-
 *** Networks and Protocols
+
 *** Development of TCP/IP
 
 *** TCP/IP Features
 
 *** Standards Organizations and RFCs
 
+*** Summary
+This section described what networks are and why networks need protocols.  TCP/IP began with the
+U.S. Defense Department's experimental ARPAnet.  TCP/IP was designed to provide decentralized
+networking in a diverse environment.  This section also covered some important features of TCP/IP,
+such as /logical addressing/, /name resolution/, and /application support/.  It described some of
+TCP/IP's oversight organizations, and discussed RFCs.
+
+*** Q&A
+Q::What is the difference between a *protocol standard* and a *protocol implementation*?
+A::
+
+Q::Why was *end-node verification* an important feature of ARPAnet?
+A::
+
+Q::Why do larger networks employ *name resolution*?
+A::
+
+*** Workshop
+
+**** Quiz
+     1. What is a network?
+     2. What are two features of TCP/IP that allow it to operate in a decentralized manner?
+     3. What system is responsible for mapping domain names to IP addresses?
+     4. What are RFCs?
+     5. What is a port?
+
+**** Exercises
+     1. Visit [[https://www.rfc-editor.org]] and browse some of the RFCs.
+     2. Visit the IETF and explore the various active working groups
+        at [[https://datatracker.ietf.org/wg/]].
+     3. Visit the IRTF at [[https://www.irtf.org]] and explore some of the ongoing research.
+     4. Visit the ICANN About page at [[https://www.icann.org/]] and learn about the ICANN
+        mission.
+     5. Read RFC 1160 for an early history (up to 1990) of the IAB and IETF.
+
+**** Key Terms
+     + ARPAnet:: An experimental network that was the birthplace of TCP/IP.
+     + Domain name:: An alphanumeric name associated with an IP address through TCP/IP's DNS name
+       service system.
+     + Gateway:: a router that connects a LAN to a larger network.  Used to apply to a router that
+       performed some kind of protocol conversion.
+     + IP address:: A local address used to locate a computer or other networked device (such as a
+       printer) on a TCP/IP netowrk.
+     + Local Area Network (LAN):: A small network belongint to a single office, organization, or
+       home, usually occupying a single geographical location.
+     + Logical address:: A network address configured through the protocol software.
+     + Name service:: A service that associates human-friendly alphanumeric names with network
+       addresses.  A computer that procides this service is known as a *name server*, and the act
+       of resolving a name to an address is called *name resolution*.
+     + Network Protocol:: A set of common rules defining a specific aspect of the communication
+       process.
+     + Physical address:: An address associate with the network hardware.  In the case of an
+       ethernet adapter, the physical address is typically assigned at the factory.
+     + Port:: An internal channel or address that provides an interface between an application and
+       TCP/IPs Transport Layer.
+     + Proprietary:: A technology controlled by a private entity, such as a corporation.
+     + Protocol implementation:: A software component that implements the communication rules
+       defined in a protocol standard.
+     + Protocol system or protocol suite:: A system of interconnected standards and procedures
+       (protocols) that enables computers to communicate over a network.
+     + RFC (Request for Comment):: An official technical paper providing relevant information on
+       TCP/IP or the Internet.  You can find the RFCs at several places on the Internet; try
+       [[https://www.rfc-editor.org]].
+     + Router:: A network device that forwards data by logical address and can also be used to
+       segment large networks into smaller subnetworks.
+     + Transmission Control Protocol/Internet Protocol (TCP/IP):: A network protocol suite used on
+       the Internet and also on many other networks around the world.
+
 ** How TCP/IP Works
 
-*** Objectives
+@@texinfo:@heading Objectives@@
 
     + TCP/IP protocol system
     + The OSI Model
     + Data packages
     + How TCP/IP protocols interact
 
+@@texinfo:@heading Summary@@
       TCP/IP is a system (suite) of protocols; a protocol is a system of rules and procedures.  The
       hardware and software of the communicating computers carry out the rules of TCP/IP
       communications --- the user does not have to get involved with the details.  A working
       knowledge of TCP/IP is essential if you want to navigate through the configuration and
       troubleshoot problems with TCP/IP networks.
 
-      At the completion:
+      @@texinfo:@subheading At the completion:@@
 
       - Describe the layers of the TCP/IP protocol system, and the purpose of each layer
 
@@ -84,7 +157,7 @@
 
 *** TCP/IP Networking
 
-* Part II --- TCP/IP Protocol System
+* Part II   --- TCP/IP Protocol System
 
 ** The Network Access Layer
 
@@ -238,7 +311,8 @@
 
 *** TCP/IP Utilities
 
-* Part III --- Networking with TCP/IP
+* Part III  --- Networking with TCP/IP
+
 ** Routing
 
 *** Objectives
@@ -264,7 +338,7 @@
 
 *** Examining Interior Networks
 
-*** Exterior Routers: BGP
+*** Exterior Routers --- BGP
 
 *** Classless Routing
 
@@ -449,7 +523,7 @@
 
 *** IPv6 Tunnels
 
-* Part IV --- Tools and Services
+* Part IV   --- Tools and Services
 
 ** Classic Tools
 
@@ -546,7 +620,7 @@
 
 *** Remote Control
 
-* The Internet
+* Part V    --- The Internet
 
 ** Part V --- The Internet
 
@@ -684,7 +758,7 @@
 
 *** Anonymity Networks
 
-* Part VI --- TCP/IP At Work
+* Part VI   --- TCP/IP At Work
 
 ** Email
 
@@ -808,7 +882,7 @@
 
 *** IoT Platforms
 
-*** Up Close: MQTT
+*** Up Close --- MQTT
 
 *** RFID
 
@@ -883,5 +957,5 @@
 
 * Index
   :PROPERTIES:
-  :UNNUMBERED: t
+  :INDEX: cp
   :END:
