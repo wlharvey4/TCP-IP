@@ -59,14 +59,14 @@ such as /logical addressing/, /name resolution/, and /application support/.  It 
 TCP/IP's oversight organizations, and discussed RFCs.
 
 *** Q&A
-Q::What is the difference between a *protocol standard* and a *protocol implementation*?
-A::
+    - Q :: What is the difference between a *protocol standard* and a *protocol implementation*?
+    - A ::
 
-Q::Why was *end-node verification* an important feature of ARPAnet?
-A::
+    - Q :: Why was *end-node verification* an important feature of ARPAnet?
+    - A ::
 
-Q::Why do larger networks employ *name resolution*?
-A::
+    - Q :: Why do larger networks employ *name resolution*?
+    - A ::
 
 *** Workshop
 
