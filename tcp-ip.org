@@ -87,36 +87,36 @@ A::
      5. Read RFC 1160 for an early history (up to 1990) of the IAB and IETF.
 
 **** Key Terms
-     + ARPAnet:: An experimental network that was the birthplace of TCP/IP.
-     + Domain name:: An alphanumeric name associated with an IP address through TCP/IP's DNS name
+     + ARPAnet :: An experimental network that was the birthplace of TCP/IP.
+     + Domain name :: An alphanumeric name associated with an IP address through TCP/IP's DNS name
        service system.
-     + Gateway:: a router that connects a LAN to a larger network.  Used to apply to a router that
+     + Gateway :: a router that connects a LAN to a larger network.  Used to apply to a router that
        performed some kind of protocol conversion.
-     + IP address:: A local address used to locate a computer or other networked device (such as a
+     + IP address :: A local address used to locate a computer or other networked device (such as a
        printer) on a TCP/IP netowrk.
-     + Local Area Network (LAN):: A small network belongint to a single office, organization, or
+     + Local Area Network (LAN) :: A small network belongint to a single office, organization, or
        home, usually occupying a single geographical location.
-     + Logical address:: A network address configured through the protocol software.
-     + Name service:: A service that associates human-friendly alphanumeric names with network
+     + Logical address :: A network address configured through the protocol software.
+     + Name service :: A service that associates human-friendly alphanumeric names with network
        addresses.  A computer that procides this service is known as a *name server*, and the act
        of resolving a name to an address is called *name resolution*.
-     + Network Protocol:: A set of common rules defining a specific aspect of the communication
+     + Network Protocol :: A set of common rules defining a specific aspect of the communication
        process.
-     + Physical address:: An address associate with the network hardware.  In the case of an
+     + Physical address :: An address associate with the network hardware.  In the case of an
        ethernet adapter, the physical address is typically assigned at the factory.
-     + Port:: An internal channel or address that provides an interface between an application and
+     + Port :: An internal channel or address that provides an interface between an application and
        TCP/IPs Transport Layer.
-     + Proprietary:: A technology controlled by a private entity, such as a corporation.
-     + Protocol implementation:: A software component that implements the communication rules
+     + Proprietary :: A technology controlled by a private entity, such as a corporation.
+     + Protocol implementation :: A software component that implements the communication rules
        defined in a protocol standard.
-     + Protocol system or protocol suite:: A system of interconnected standards and procedures
+     + Protocol system or protocol suite :: A system of interconnected standards and procedures
        (protocols) that enables computers to communicate over a network.
-     + RFC (Request for Comment):: An official technical paper providing relevant information on
+     + RFC (Request for Comment) :: An official technical paper providing relevant information on
        TCP/IP or the Internet.  You can find the RFCs at several places on the Internet; try
        [[https://www.rfc-editor.org]].
-     + Router:: A network device that forwards data by logical address and can also be used to
+     + Router :: A network device that forwards data by logical address and can also be used to
        segment large networks into smaller subnetworks.
-     + Transmission Control Protocol/Internet Protocol (TCP/IP):: A network protocol suite used on
+     + Transmission Control Protocol/Internet Protocol (TCP/IP) :: A network protocol suite used on
        the Internet and also on many other networks around the world.
 
 ** How TCP/IP Works
