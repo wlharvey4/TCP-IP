@@ -20,6 +20,7 @@ This section discusses the basics of TCP/IP and how it works.
     + History of TCP/IP
     + Important features of TCP/IP
 
+:CI:
 #+CINDEX: Transmission Control Protocol/Internet Protocol
 #+CINDEX: TCP/IP
 #+CINDEX: history of TCP/IP
@@ -27,12 +28,14 @@ This section discusses the basics of TCP/IP and how it works.
 #+CINDEX: protocol suite
 #+CINDEX: network
 #+CINDEX: RFC
+:END:
 @@texinfo:@heading Summary@@
-      *Transmission Control Protocol/Internet Protocol (TCP/IP)* is a _protocol system_ --- a
-      collection of protocols that supports a network communications.  The answer to the question
-      _What is a protocol?_ begins with the question _What is a network?_
 
-      This section describes what a *network* is and shows why networks _need_ *protocols*.  This
+- Transmission Control Protocol/Internet    Protocol (TCP/IP)  :: a _protocol system_; a collection
+     of protocols  that supports  network communications.  The  answer to the  question _What  is a
+     protocol?_ begins with the question _What is a network?_
+
+      This section describes what a *network* is and shows why networks /need/ *protocols*.  This
       section explains what *TCP/IP* is, what it does, and where it began.
 
       @@texinfo: @subheading After studying this section, you should be able to:@@
@@ -43,7 +46,33 @@ This section discusses the basics of TCP/IP and how it works.
       - List some important features of TCP/IP
       - Identify the organizations that oversee TCP/IP and the Internet
       - Explain what *RFCs* are and where to find them
+
+:CI:
+#+CINDEX: network, definition
+#+CINDEX: transmission medium
+:END:
 *** Networks and Protocols
+- Network :: a collection of computers or computer-like devices that can communicate across a
+             common transmission medium.
+- Transmission Medium  :: Often  the transmission medium  is an insulated  metal wire  that carries
+     electrical pulses between computers; but it could also be a phone line or even wireless.
+
+The communication process requires that data from  one computer pass across the transmission medium
+to another computer.  A  computer interacts with the world through one  or more *applications* that
+perform specific  tasks and manage the  communication process.  In  every case if your  computer is
+part  of  a  network, an  application  on  the  computer  must  be capable  of  communicating  with
+applications on other network computers.
+
+- Network Protocol  :: a system of  common rules that helps  define the complex process  of network
+     communication.   Protocols guide  the  process of  sending  data from  an  application on  one
+     computer, through the networking components of  the operating system, to the network hardware,
+     across the transmission medium, and up through the destination computer's network hardware and
+     operating system to a receiving application.
+
+The protocols of TCP/IP define the network communication process and define how a unit of data
+should look and what information it should contain so that a receiving computer can interpret the
+message correctly.  TCP/IP and its related protocols from a complete system defining how data
+should be processed, transmitted, and received on a TCP/IP network.
 
 *** Development of TCP/IP
 
