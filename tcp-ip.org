@@ -5,11 +5,13 @@
 #+TEXINFO_HEADER:
 #+TEXINFO_POST_HEADER:
 #+SUBTITLE: And Networking
-#+SUBAUTHOR:
+#+SUBTITLE: Version {{{version}}} {{{time(%F %R)}}}
 #+TEXINFO_DIR_CATEGORY: Networking
 #+TEXINFO_DIR_TITLE:TCP/IP
 #+TEXINFO_DIR_DESC:All About TCP/IP
 #+TEXINFO_PRINTED_TITLE:All About TCP/IP
+#+OPTIONS: H:4
+#+MACRO: version 0.2
 
 * Part I    --- TCP/IP Basics
 
@@ -49,7 +51,12 @@ This section discusses the basics of TCP/IP and how it works.
 
 :CI:
 #+CINDEX: network, definition
+#+CINDEX: network protocol
+#+CINDEX: protocol, network
 #+CINDEX: transmission medium
+#+CINDEX: network communication process
+#+CINDEX: unit of data
+#+CINDEX: implementation of TCP/IP transmissions
 :END:
 *** Networks and Protocols
 - Network :: a collection of computers or computer-like devices that can communicate across a
@@ -69,14 +76,185 @@ applications on other network computers.
      across the transmission medium, and up through the destination computer's network hardware and
      operating system to a receiving application.
 
-The protocols of TCP/IP define the network communication process and define how a unit of data
-should look and what information it should contain so that a receiving computer can interpret the
-message correctly.  TCP/IP and its related protocols from a complete system defining how data
-should be processed, transmitted, and received on a TCP/IP network.
+The protocols of TCP/IP define the /network communication  process/ and define how a /unit of data/
+should look and what  information it should contain so that a receiving  computer can interpret the
+message correctly.   TCP/IP and  its related  protocols from  a complete  system defining  how data
+should be processed, transmitted, and received on a TCP/IP network.  A system of related protocols,
+such as the TCP/IP protocols, is called a *protocol suite*.
 
+- TCP/IP Implementation :: The actual act  of /formatting/ and /processing/ TCP/IP transmissions is
+     performed  by a  software  component know  as  the vendor's  *implementation*  of TCP/IP.   An
+     implementation is a software  component that performs the functions that  enable a computer to
+     participate in a TCP/IP network.
+- TCP/IP Standard :: a system of rules defining communication on TCP/IP networks.  The purpose of
+     the TCP/IP standars is to ensure the compatibility of all TCP/IP implementations regards of
+     version or vendor.
+
+
+:CI:
+#+CINDEX: TCP/IP history
+#+CINDEX: ARPAnet
+:END:
 *** Development of TCP/IP
+TCP/IP's design is  a result of its historical role  as the protocol system for what  was to become
+the Internet.  The Internet grew from research originally performed by the United States Department
+of Defense.   Defense officials wondered  whether it would be  possible for disparate  computers to
+share    information.    These    officials   created    a    network   that    became   know    as
+@@texinfo:@dfn{ARPAnet}@@,  named   for  the  @@texinfo:@cite{Advanced  Research   Projects  Agency
+(ARPA)}@@.
 
+As this network began to take sharep, a group of computer scientists started to work on a versatile
+protocol system that would support a wide range of hardware and provide a resilient, redundant, and
+decentralized system for delivering data on a massive, global scale.  The result of this research
+was the beginning of the TCP/IP protocol suite.  When the National Science Foundation wanted to
+build a network to connect research institutions, it adopted ARPAnet's protocol system and began to
+build what we know as the Internet.    University College of London and other European resarch
+institutes contributed to the early development of TCP/IP, and the first trans-Atlantic
+communication tests began around 1975.  As more and more universities and research institutions
+became gradually connected, the Internet phenomenon began to spread around the world.
+
+The original decentralized vision of ARPAnet survives to this day in the design of the TCP/IP
+protocol system and is a big part of the success of TCP/IP and the Internet.  Two important
+features of TCP/IP that provide for this decentralized environment are as follows:
+
+:CI:
+#+CINDEX: end-node verification
+#+CINDEX: dynamic routing
+#+CINDEX: end nodes
+:END:
++ End-node verification :: The two computers that are actually communicating --- called the /end
+     nodes/ because they are at each end of the chain passing the message --- are responsible for
+     acknowledging and verifying the transmission.  All computers basically operate as equals, and
+     there is no central scheme for overseeing communications.
++ Dynamic routing :: Nodes are connected through multiple paths, and the routers choose a path for
+     the data based on present conditions.
+
+:CI:
+#+CINDEX: local area network
+#+CINDEX: LAN
+#+CINDEX: gateway
+:END:
+**** Personal Computer Revolution
+As the Internet  began to reach beyond  its original academic roots, users  with personal computers
+started to look for ways to connect.  One  solution was a dial-up connection through a modem, which
+offered network connnectivity through a phone line.
+
+But users also wanted to connect to other nearby computers in their own office---to share files and
+access peripheral devices.  To address this need, another network concept, the @@texinfo:@dfn{local
+area network (LAN)}@@, began to take form.
+
+Early LAN protocols did not provide Internet access and were designed around proprietary protocoal
+systems.  Many did not support routing of any kind.  Computers in a single workgroup would talk to
+each other using one of these proprietary protocols, and users would either do without the
+Internet, or they would connect separately using a dial-up line.
+
+As the Internet service  providers grew more numerous, and Internet  access became more affordable,
+companies  began to  ask  for a  fast,  permanent,  always-on Internet  connection.   A variety  of
+solutions  began  to  emerge  for  getting  LAN  users  connected  to  the  TCP/IP-based  Internet.
+Specialized *gateways* offered the protocol translation necessary for these local networks to reach
+the Internet.  Gradually, however, the growth of the  World Wide Web, and the accompanying need for
+end-user Internet connectivity,  made TCP/IP essential, leaving little purpose  for proprietary LAN
+protocols such as AppleTalk, NetBEUI, and Novell's IPX/SPX.
+
+Operating system vendors  such as Apple and  Microsoft started to make TCP/IP  the default protocol
+for  local, as  well as  Internet, networking.   TCP/IP  grew up  around UNIX,  and all  UNIX/Linux
+variants were already fluent in TCP/IP.  Eventually,  TCP/IP became the networking protocol for the
+whole world---from small offices to gigantic data centers.  The need to accommodate LANs has caused
+considerable innovation  in the implementation  of the hardware-conscience protocols  that underlie
+TCP/IP.
+
+
+:CI:
+#+CINDEX: TCP/IP features
+#+CINDEX: features of TCP/IP
+:END:
 *** TCP/IP Features
+Pay close attention to the way the TCP/IP protocol suite addresses the following problems:
++ Logical addressing
++ Routing
++ Name Resolution
++ Error control and flow control
++ Application support
+
+These issues are at the heart of the TCP/IP.  The following sections introduce these important
+features.
+:CI:
+#+CINDEX: logical address
+#+CINDEX: IP address
+#+CINDEX: phyiscal address
+#+CINDEX: network adaptor
+#+CINDEX: media access control
+#+CINDEX: MAC address
+#+CINDEX: physical network
+#+CINDEX: LAN
+#+CINDEX: WAN
+#+CINDEX: routers
+#+CINDEX: segment network
+#+CINDEX: routed network
+#+CINDEX: subnet
+#+CINDEX: Internet Corporation for Assigned Names and Numbers
+#+CINDEX: ICANN
+#+CINDEX: Network ID
+#+CINDEX: Network Access Translation
+#+CINDEX: NAT
+#+CINDEX: private IP range
+#+CINDEX: Address Resolution Protocol
+#+CINDEX: Reverse Address Resolution Protocol
+#+CINDEX: ARP
+#+CINDEX: RARP
+:END:
+**** Logical Addressing
+***** Network Adaptor Physical Address
+****** Media Access Control (MAC) Address
+A *network  adaptor* has a  unique /physical  address/.  In the  case of /ethernet/,  the *physical
+address* (sometimes  called a  *Media Access  Control (MAC)* address)  used to  be assigned  to the
+adaptor at  the factory, although many  contemporary devices now  provide a means for  changing the
+phyisical address.
+****** LANs
+On a  LAN, low-lying hardware-conscience protocols  deliver data across the  physical network using
+the adaptor's  physical address.   There are many  network types,  and each as  a different  way of
+delivering data.  On a basic ethernet network, for example, a computer sends messages directly onto
+the transmission medium.  The network adaptor of each computer listens to every transmission on the
+local network to determine whether a message is addressed to its own physical address.
+****** WANs
+On large networks every network adaptor cannot listen to every message.  As the transmission medium
+becomes more  populated with computers, a  physical addressing scheme cannot  function efficiently.
+Network administrators  often segment networks  using devices such  as /routers/ to  reduce network
+traffic.
+****** Routed Network with Subnets
+On a /routed network/, administrators need a  way to subdivide the network into smaller subnetworks
+(called *subnets*), and  impose a hierarchical design  so that a message can  travel efficiently to
+its destination.
+
+***** Logical Addressing Through Subnetting
+TCP/IP provides this subnetting capability  through *logical addressing*.  A @@texinfo:@dfn{logical
+address}@@ is an address configured through the  network software.  In TCP/IP, a computer's logical
+address is called an @@texinfo:@dfn{IP address}@@.  An IP address can include:
+	+ a /network ID number/ identifying a network
+        + a /subnet ID number/ identifying a subnet on the network
+        + a /host ID number/ identifying the computer on the subnet
+
+The IP addressing system also lets the  network administrator impose a sensible numbering scheme on
+the network so that the progression of addresses reflects the internal organization of the network.
+***** Internet-Ready Addresses
+****** Isolated from Internet---Any IP Address
+If your network is isolated from the Internet, you are free to use any IP addresses you want (as
+long as your network follows the basic rules for IP addressing).
+****** Connected to Internet---Network ID Assignment
+If your network will be part of the  Internet, *Internet Corporation for Assigned Names and Numbers
+(ICANN)*, which was formed in 1998, will assign a /network ID/ to your network, and that network ID
+will form the first part of the IP address.
+****** Network Address Translation (NAT)
+One interesting development is a system called *Network Address Translation (NAT)*, which lets the
+local network use a private IP range that is nonroutable on the Internet.  The NAT device will
+translate a local address into an official Internet-ready address for Internet communications.
+***** Address Resolution Protocol (ARP)
+In TCP/IP, a logical address is resolved to and from the corresponding hardware-specific physical
+address using *Address Resolution protocol (ARP)* and *Reverse ARP (RARP)*.
+**** Routing
+**** Name Resolution
+**** Error Control and Flow Control
+**** Application Support
 
 *** Standards Organizations and RFCs
 
