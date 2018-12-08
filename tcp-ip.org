@@ -11,7 +11,7 @@
 #+TEXINFO_DIR_DESC:All About TCP/IP
 #+TEXINFO_PRINTED_TITLE:All About TCP/IP
 #+OPTIONS: H:4
-#+MACRO: version 0.2
+#+MACRO: version 0.3
 
 * Part I    --- TCP/IP Basics
 
@@ -176,7 +176,7 @@ Pay close attention to the way the TCP/IP protocol suite addresses the following
 + Error control and flow control
 + Application support
 
-These issues are at the heart of the TCP/IP.  The following sections introduce these important
+These issues  are at the  heart of  the TCP/IP.  The  following sections introduce  these important
 features.
 :CI:
 #+CINDEX: logical address
@@ -252,11 +252,177 @@ translate a local address into an official Internet-ready address for Internet c
 In TCP/IP, a logical address is resolved to and from the corresponding hardware-specific physical
 address using *Address Resolution protocol (ARP)* and *Reverse ARP (RARP)*.
 **** Routing
+:CI:
+#+CINDEX: router
+#+CINDEX: local subnet
+#+CINDEX: filters
+#+CINDEX: bridges
+#+CINDEX: switches
+#+CINDEX: hubs
+:END:
+ - Router ::  is a  special device  that can read  logical addressing  information and  direct data
+             across the  network to  its destination.  At  the simplest level,  a router  divides a
+             local subnet from the larger network.
+
+Data addressed to another  computer or device on the /local subnet/ does  not cross the router and,
+therefore, does not clutter up the transmission lines of the greater network.  If data is addressed
+to a computer outside the subnet, the router forwards the data accordingly.
+
+Large networks,  such as the  Internet, include  many routers and  provide multiple paths  from the
+source to the destination.
+
+TCP/IP includes protocols that define how the routers find a path through the network.
+
+@@texinfo:@cartouche
+Network  devices such  as  @b{bridges},  @b{switches}, and  @b{intelligent  hubs}  can also  filter
+traffice and  reduce network traffic.   Because these  devices work with  @emph{physical addresses}
+rather  than @emph{logical  addresses}, they  cannot  perform the  complex routing  functions of  a
+router.
+@end cartouche@@
+
 **** Name Resolution
+:CI:
+#+CINDEX: domain name system (dns)
+#+CINDEX: DNS
+#+CINDEX: name resolution
+#+CINDEX: name servers
+#+CINDEX: name service system
+#+CINDEX: Windows Internet Name Services (WINS)
+:END:
+ - Domain Name    System (DNS)  ::  A numberic IP  address is designed  for the convenience  of the
+      computer rather than the  convenience of the user.  TCP/IP therefore  provides for a parallel
+      structure of user-oriented alphanumeric names, called *domain names* or @@texinfo:@dfn{Domain
+      Name System (DNS)}@@.
+
+ - Name Resolution :: This  mapping of domain names to an IP  address is called @@texinfo:@dfn{name
+      resolution}@@.
+
+ - Name Servers :: Special computers called @@texinfo:@dfn{name servers}@@ store tables showing how
+                   to translate these domain names to and from IP addresses.
+
+The computer addresses comonly associated with email or the World Wide Web are expressed as DNS
+names.  TCP/IP's @@texinfo:@dfn{name service}@@ system provides for a hierarchy of name servers
+that supply domain name/IP address mappings for DNS-registered computers on the Internet.  This
+means that the everyday user rarely has to enter or decipher an actual IP address.
+
+DNS is the name resolution system for the Internet and is the most common name resolution method.
+Other techniques also exist for resolving alphanumeric names to IP address.  These alternative
+systems have gradually faded in importance in recent years, but name resolution services such as
+the *Windows Internet Name Services (WINS)*, which resolves NetBIOS names to IP address, are still
+in operation around the world.
+
 **** Error Control and Flow Control
+:CI:
+#+CINDEX: transport layer
+#+CINDEX: network access layer
+:END:
+The TCP/IP protocol suite provides features that ensure the reliable delivery of data across the
+network.  These features include
+ - checking data for transmission errors (to ensure that the data that arrives is exactly what was
+   sent)
+ - acknowledging successful receipt of a network message
+
+TCP/IP's Transport Layer defines many of these error-control, flow-control, and acknowledgment
+functions through the TCP protocol.  Lower leverl protocols at TCP/IP's Network Access layer also
+play a part in the overall system of error control.
+
 **** Application Support
+:CI:
+#+CINDEX: ports
+#+CINDEX: ftp
+#+CINDEX: file transfer
+#+CINDEX: Lpr
+#+CINDEX: printing
+#+CINDEX: ping
+#+CINDEX: NSLookup
+#+CINDEX: Traceroute
+:END:
+Several network applications might be running on the same computer.  The protocol software must
+provide a means for determining which incoming packet belongs with each application.  In TCP/IP,
+this interface from the network to the application is accomplished through a system of logical
+channels called @@texinfo:@dfn{ports}@@.  Each port has a number that is used to identify the
+port.  You can think of these ports as logical pipelines within the computer through which data can
+flow from the application to  (and from) the protocol software.
+
+The TCP/IP suite also includes a number of ready-made applications designed to assist with the
+various network task.  Some typical TCP/IP utilities are show.
+
+ |------------+-------------------------------|
+ | Utility    | Purpose                       |
+ |------------+-------------------------------|
+ | ftp        | File transfer                 |
+ | Lpr        | Printing                      |
+ | Ping       | Configuration/troubleshooting |
+ | NSLookup   | Configuration/name resolution |
+ | Traceroute | Configuration/troubleshooting |
+ |------------+-------------------------------|
+
 
 *** Standards Organizations and RFCs
+:CI:
+#+CINDEX: Internet Architecture Board
+#+CINDEX: IAB
+#+CINDEX: Internet Engineering Task Force
+#+CINDEX: IETF
+#+CINDEX: Internet Research Task Force
+#+CINDEX: IRTF
+#+CINDEX: Internet Corporation for Assigned Names and Numbers
+#+CINDEX: ICANN
+#+CINDEX: Internet Assigned Numbers Authority
+#+CINDEX: IANA
+#+CINDEX: The U.S. National Telecommunications and Information Administration
+#+CINDEX: NTIA
+:END:
+Several organizations have been instrumental in the development of TCP/IP and the Internet.
+ + Internet Architecture Board (IAB) :: The governing board that sets policy for the Internet and
+      sees to the further development of TCP/IP standards.
+ + Internet Engineering Task Force (IETF) :: An organization that studies and rules on engineering
+      issues.  The IETF is divided into workgroups that study particular aspects of TCP/IP and the
+      Internet, such as applications, routing, network management, and so forth.
+ + Internet Research Task Force (IRTF) :: The branch of the IAB that sponser long-range research.
+ + Internet Corporation for Assigned Names and Numbers (ICANN) :: An organization established in
+      1998 that coordinates the assignment of Internet domain names, IP address, and globally
+      unique protocol parameters such as port numbers ([[https://www.icann.org]]).
+
+Until recently, Washington has maintained an advisory role in maintaining the Internet Assigned
+Numbers Authority (IANA).  The U.S. National Telecommunications and Information Administration
+(NTIA) has contracted with ICANN to manage IP addresses, protocols parameters, and the DNS root
+zone since 1999, but the NTIA has retained an oversight role.  The NTIA is currently negotiating
+with ICANN to establish a transition plan  that will pass full control of the IANA to ICANN, which
+will mean that the Internet is at last truly interntional and unaffiliated.
+
+:CI:
+#+CINDEX: request for comments
+#+CINDEX: RFC
+:END:
+Because TCP/IP is a system of open standards that are not owned by any company or individual, the
+Internet community needs a comprehensive, independent, vendor-neutral process for proposing,
+discussing, and releasing additions and changes.  Most of the official documentation on TCP/IP is
+available through a series of @@texinfo:@dfn{Requests for Comments (RFCs)}@@.  The library of RFCs
+includes Internet standards and reports from workgroups.  IETF official specifications are
+published as RFCs.  Many RFCs are intended to illuminate some aspect of TCP/IP or the Internet.
+You will find many references to RFCs throughout this book because most protocols of the TCP/IP
+suite are defined in one or more RFCs.  Anyone can submit an RFC for review.
+
+The RFCs provide essential technical background for anyone wanting a deeper understanding of
+TCP/IP.  The list includes several technical papers on protocols, utilities, and services, as well
+as a few TCP/IP-related poems and Shakespeare takeoffs.
+
+You can find RFCs at several places on the Internet.  Try [[https://rfc-editor.org]].  The following
+table shows a few representative RFCs.
+
+| Number | Title                                           |
+|--------+-------------------------------------------------|
+|    791 | Internet Protocol (IP)                          |
+|    792 | Internet Control Message Protocol (ICMP)        |
+|    793 | Transmission Cotnrol Protocol                   |
+|    959 | File Transfer Protocol                          |
+|    968 | Twas the Night Before Start-up                  |
+|   1180 | TCP/IP Tutorial                                 |
+|   1188 | Proposed Standard for Transmission of Datagrams |
+|   2097 | The PPP NetBIOS Frames Control Protocol         |
+|   4831 | Goas for Network-Baed Localized Mobility Mgmt   |
+|--------+-------------------------------------------------|
 
 *** Summary
 This section described what networks are and why networks need protocols.  TCP/IP began with the
