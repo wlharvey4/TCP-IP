@@ -347,6 +347,8 @@ flow from the application to  (and from) the protocol software.
 The TCP/IP suite also includes a number of ready-made applications designed to assist with the
 various network task.  Some typical TCP/IP utilities are show.
 
+#+CAPTION[TCP/IP Applications]: TCP/IP Utility Applications
+#+NAME: tab:app
  |------------+-------------------------------|
  | Utility    | Purpose                       |
  |------------+-------------------------------|
@@ -356,7 +358,6 @@ various network task.  Some typical TCP/IP utilities are show.
  | NSLookup   | Configuration/name resolution |
  | Traceroute | Configuration/troubleshooting |
  |------------+-------------------------------|
-
 
 *** Standards Organizations and RFCs
 :CI:
@@ -1327,6 +1328,15 @@ TCP/IP's oversight organizations, and discussed RFCs.
   :PROPERTIES:
   :APPENDIX: t
   :END:
+
+* List of Tables
+  :PROPERTIES:
+  :APPENDIX: t
+  :END:
+@@texinfo:@listoffloats Table@@
+
+
+
 
 * Index
   :PROPERTIES:
