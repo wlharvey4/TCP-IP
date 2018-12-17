@@ -1,17 +1,21 @@
+# -*- mode: org; fill-column: 79; -*-
+
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
+#+DATE: <2018-12-16 Sun 16:57>
+#+SUBTITLE: And Networking
+#+SUBTITLE: Version {{{version}}} {{{time(%F %R)}}}
+
 #+TEXINFO_FILENAME:tcp-ip.info
 #+TEXINFO_CLASS: info
 #+TEXINFO_HEADER:
 #+TEXINFO_POST_HEADER:
-#+SUBTITLE: And Networking
-#+SUBTITLE: Version {{{version}}} {{{time(%F %R)}}}
 #+TEXINFO_DIR_CATEGORY: Networking
 #+TEXINFO_DIR_TITLE:TCP/IP
 #+TEXINFO_DIR_DESC:All About TCP/IP
 #+TEXINFO_PRINTED_TITLE:All About TCP/IP
 #+OPTIONS: H:4
-#+MACRO: version 0.3
+#+MACRO: version 0.3.2
 
 * Part I    --- TCP/IP Basics
 
@@ -524,7 +528,60 @@ TCP/IP's oversight organizations, and discussed RFCs.
         functionality
 
 *** The TCP/IP Protocol System
+:CI:
+#+CINDEX: responsibilities, protocol system
+:END:
 
+@@texinfo: @heading The responsibilities of a protocol system.@@
+
+A protocol system (such as TCP/IP) must be responsible for the following tasks:
+
+
+  + Prepare data for the /transmission medium/ :: Dividing messages into
+       manageable chunks of data that will pass efficiently through the
+       transmission medium;
+  + Communicate with /network adaptor/ :: Interfacing with the network adaptor
+       hardware;
+  + Addressing :: the sending computer must be capable of targeting data to a
+                  receiving computer; the receiving computer must be capable of
+                  recognizing a message that it is supposed to receive;
+  + Route data to /subnet/ :: Routing data to the subnet of the destination
+       computer, even if the source subnet and destination subnet are
+       dissimilar physical networks;
+  + Error • Flow • Acknowledge :: Performing error control, flow control, and
+       acknowledgment; for reliable communication, the sending and receiving
+       computers must be able to identify and correct faulty transmissions and
+       control the flow of data;
+  + Pass data to /network/ :: Accepting data from an application and passing it
+       to the network;
+  + Receive data from /network/ :: Receiving data from the network and passing
+       it to an application;
+
+**** Module Design
+:CI:
+#+CINDEX: modular design, tcp/ip protocol
+#+CINDEX: protocol layers, TCP/IP
+#+CINDEX: layered components
+#+CINDEX: TCP/IP model
+#+CINDEX: stack
+#+CINDEX: functions, tcp/ip protocol
+:END:
+     To accomplish these tasks, the creators of TCP/IP settled on a /modular
+     design/.  The TCP/IP protocol system is divided into separate components
+     that theoretically function independently from one another.  Each
+     /component/ is responsible for a piece of the communication process.
+
+     The advantage of this modular design is that it lets vendors easily adapt
+     the protocol software to specific hardway and operating systems.
+
+***** TCP/IP Model
+      The TCP/IP protocol system is subdivided into /layered components/, each
+      of which performs specific duties.  This model, or *stack*, comes from the
+      early days of TCP/IP, andis sometimes called the /TCP/IP model/.  The
+      official *TCP/IP protocol layers* and their functions are described in the
+      following list.  Compare the functions in the list with the
+      responsibilities listed earlier; the responsibilities of the protocol
+      system are distributed among the layers.
 *** TCP/IP and the OSI Model
 
 *** Data Packages
@@ -1270,6 +1327,33 @@ TCP/IP's oversight organizations, and discussed RFCs.
     network.  In this section, you witness many of these components in a real, although
     hypothetical situation.  At the completion of this hour, you'll be able to describe how the
     components of a TCP/IP network interact.
+
+* Appendix
+  :PROPERTIES:
+  :APPENDIX: t
+  :END:
+
+** Asides
+
+*** Other Networking Models
+    The four-layered model is a common model for describing TCP/IP networking,
+    but it is not the only model.
+    + ARPAnet model :: is described in RFC 871; it describes three layers:
+      1. Network Interface layer
+      2. Host-to-Host layer
+      3. Process-Level/Applications layer
+    + Five-layer model :: has these layers
+      1. Physical layer
+      2. Data Link layer
+      3. Internet layer
+      4. Transport layer
+      5. Application layer
+    + Other models :: might exclude either the Network Access or the
+                      Application layer
+
+
+
+
 
 * Answers to Quizzes and Exercises
   :PROPERTIES:
