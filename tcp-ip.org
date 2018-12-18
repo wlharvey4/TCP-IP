@@ -2,10 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2018-12-17 Mon 21:23>
+#+DATE: <2018-12-17 Mon 22:01>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{version}}} {{{time(%F %R)}}}
-#+MACRO: version 0.3.3
+#+MACRO: version 0.3.4
 
 #+TEXINFO_FILENAME:tcp-ip.info
 #+TEXINFO_CLASS: info
@@ -352,7 +352,7 @@ The TCP/IP suite also includes a number of ready-made applications designed to a
 various network task.  Some typical TCP/IP utilities are show.
 
 #+CAPTION[TCP/IP Applications]: TCP/IP Utility Applications
-#+NAME: tab:app
+#+NAME: Tab:Apps
  |------------+-------------------------------|
  | Utility    | Purpose                       |
  |------------+-------------------------------|
@@ -644,7 +644,72 @@ A protocol system (such as TCP/IP) must be responsible for the following tasks:
       See [[*Layers][By The Way---Layers]]
 
 *** TCP/IP and the OSI Model
+:CI:
+#+CINDEX: Open Systems Interconnection
+#+CINDEX: OSI model
+:END:
+    The networking industry has a standard *seven-layer model* for network
+    protocol architecture called the @@texinfo:@dfn{Open Systems
+    Interconnection (OSI) model}@@.  The OSI model represents an effort by the
+    International Organization for Standardization (ISO) to standardize the
+    design of network protocol systems to promote interconnectivity and open
+    access to protocol standards for software developers.
 
+    Strictly speaking, TCP/IP does not conform to the OSI model.  The OSI model
+    has been very influential in the growth and development of protocol
+    implementations, and it is quite common to see the OSI terminology applied
+    to TCP/IP.
+
+**** Relationship Between TCP/IP and OSI
+     The OSI model divides the duties of the Application Layer into three
+     layers: Application, Presentation, and Session.  OSI splits the activities
+     of the Network Access layer into a Data Link layer and a Physical layer.
+     This increased subdivision adds some complexity, but it also adds
+     flexibility for developers by targeting the protocol layers to more
+     specific services.  In particular, the division at the lower level into
+     Data Link and Physical layers separates the functions related to
+     organizing communication from the functions related to accessing the
+     communication medium.  The three uper OSI layers offer a greater variety
+     of alternatives for an application to interface with the protocol stack.
+
+     #+CAPTION: The Seven-Layer OSI Model
+     #+NAME: Tab:OSI-Model
+     |----------------------+--------------------|
+     | TCP/IP               | OSI                |
+     |----------------------+--------------------|
+     |                      | Application Layer  |
+     | Application Layer    | Presentation Layer |
+     |                      | Session Layer      |
+     |----------------------+--------------------|
+     | Transport Layer      | Transport Layer    |
+     |----------------------+--------------------|
+     | Internet Layer       | Network Layer      |
+     |----------------------+--------------------|
+     | Network Access Layer | Data Link Layer    |
+     |                      | Physical Layer     |
+     |----------------------+--------------------|
+
+     + Physical Layer :: Converts the data into the stream of electrical or
+                         analog pulses that will actually cross the
+                         transmission medium and oversees the transmission of
+                         the data.
+     + Data Link Layer :: Provides an interface with the network adaptor;
+          maintains logical links for the subnet.
+     + Network Layer :: Supports logical addressing and routing.
+     + Transport Layer :: Provides error control and flow control for the
+          internetwork.
+     + Session Layer :: Establishes sessions between communicating applications
+                        on the communicating computers.
+     + Presentation Layer :: Translates data to a standard format; manages
+          encryption and data compression.
+     + Application Layer :: Provides a network interface for applications;
+          supports network applications for file transfer, communcations, and
+          so forth.
+
+     The TCP/IP model and the OSI model are *standards*, not
+     *implementations*.  Real-world implementations of TCP/IP do not always map
+     cleanly to the models shown, and the perfect correspondence is also a
+     matter of some discussion.
 *** Data Packages
 
 *** TCP/IP Networking
