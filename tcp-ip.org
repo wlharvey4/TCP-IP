@@ -2,9 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2018-12-16 Sun 16:57>
+#+DATE: <2018-12-17 Mon 21:23>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{version}}} {{{time(%F %R)}}}
+#+MACRO: version 0.3.3
 
 #+TEXINFO_FILENAME:tcp-ip.info
 #+TEXINFO_CLASS: info
@@ -15,7 +16,6 @@
 #+TEXINFO_DIR_DESC:All About TCP/IP
 #+TEXINFO_PRINTED_TITLE:All About TCP/IP
 #+OPTIONS: H:4
-#+MACRO: version 0.3.2
 
 * Part I    --- TCP/IP Basics
 
@@ -557,7 +557,7 @@ A protocol system (such as TCP/IP) must be responsible for the following tasks:
   + Receive data from /network/ :: Receiving data from the network and passing
        it to an application;
 
-**** Module Design
+**** Modular Design
 :CI:
 #+CINDEX: modular design, tcp/ip protocol
 #+CINDEX: protocol layers, TCP/IP
@@ -575,6 +575,12 @@ A protocol system (such as TCP/IP) must be responsible for the following tasks:
      the protocol software to specific hardway and operating systems.
 
 ***** TCP/IP Model
+:CI:
+#+CINDEX: layered components
+#+CINDEX: stack, tcp/ip protocol
+#+CINDEX: protocol layers, tcp/ip
+#+CINDEX: functions, protocol layers
+:END:
       The TCP/IP protocol system is subdivided into /layered components/, each
       of which performs specific duties.  This model, or *stack*, comes from the
       early days of TCP/IP, andis sometimes called the /TCP/IP model/.  The
@@ -582,6 +588,61 @@ A protocol system (such as TCP/IP) must be responsible for the following tasks:
       following list.  Compare the functions in the list with the
       responsibilities listed earlier; the responsibilities of the protocol
       system are distributed among the layers.
+
+      See [[*Other Networking Models][By The Way---Many Models]]
+
+***** The TCP/IP Model's Protocol Layers
+:CI:
+#+CINDEX: protocol layers, tcp/ip model
+#+CINDEX: network access layer
+#+CINDEX: internet layer
+#+CINDEX: transport layer
+#+CINDEX: application layer
+:END:
+
+      |------------------------------|
+      | TCP/IP Model Protocol Layers |
+      |------------------------------|
+      | Application Layer            |
+      |------------------------------|
+      | Transport Layer              |
+      |------------------------------|
+      | Internet Layer               |
+      |------------------------------|
+      | Network Access Layer         |
+      |------------------------------|
+
+      + Network Access Layer :: Provides an interface with the physical
+           network.  Formats the data for the transmission medium and addresses
+           data for the subnet based on physical hardware addresses.  Provides
+           error control for data delivered on the physical network.
+      + Internet Layer :: Provides logical, hardware-independent addressing so
+                          that data can pass among subnets with different
+                          physical architectures.  Provides routing to reduce
+                          traffic and support delivery across the internetwork.
+                          Relates physical addresses (used at the Network
+                          Access layer) to logical addresses.
+      + Transport Layer :: Provides flow-control, error-control, and
+           acknowledgment services for the internetwork.  Serves as an
+           interface for network applications.
+      + Application Layer :: Provides applications for network troubleshooting,
+           file transfer, remote control, and internet activities.  Also
+           supports the network application programming interfaces (APIs) that
+           enable programs written for a particular operating environment to
+           access the network.
+
+***** Added Information
+:CI:
+#+CINDEX: encapsulation
+:END:
+      When the TCP/IP protocol software prepares a piece of data for
+      transmission across the network, each layer on the sending machine adds a
+      layer of information tot he data that is relevant to the corresponding
+      layer on the receiving machine.  This process is sometimes referred to as
+      @@texinfo:@dfn{encapsulation}@@.
+
+      See [[*Layers][By The Way---Layers]]
+
 *** TCP/IP and the OSI Model
 
 *** Data Packages
@@ -1328,32 +1389,40 @@ A protocol system (such as TCP/IP) must be responsible for the following tasks:
     hypothetical situation.  At the completion of this hour, you'll be able to describe how the
     components of a TCP/IP network interact.
 
-* Appendix
+* By The Ways
   :PROPERTIES:
   :APPENDIX: t
   :END:
 
-** Asides
-
-*** Other Networking Models
-    The four-layered model is a common model for describing TCP/IP networking,
-    but it is not the only model.
-    + ARPAnet model :: is described in RFC 871; it describes three layers:
-      1. Network Interface layer
-      2. Host-to-Host layer
-      3. Process-Level/Applications layer
-    + Five-layer model :: has these layers
-      1. Physical layer
-      2. Data Link layer
-      3. Internet layer
-      4. Transport layer
-      5. Application layer
-    + Other models :: might exclude either the Network Access or the
-                      Application layer
+** Other Networking Models
+   The four-layered model is a common model for describing TCP/IP networking,
+   but it is not the only model.
+   + ARPAnet model :: is described in RFC 871; it describes three layers:
+     1. Network Interface layer
+     2. Host-to-Host layer
+     3. Process-Level/Applications layer
+   + Five-layer model :: has these layers
+     1. Physical layer
+     2. Data Link layer
+     3. Internet layer
+     4. Transport layer
+     5. Application layer
+   + Other models :: might exclude either the Network Access or the
+                     Application layer
 
 
 
 
+
+** Layers
+:CI:
+#+CINDEX: layer
+:END:
+   The term @@texinfo:@dfn{layer}@@ is used throughout the computer industry
+   for protocol component levels.  Header information is applied in layers to
+   the data as it passes through the components of the protocol stack.  When it
+   comes to the components themselves, however, the term /layer/ is somewhat
+   metaphorical.
 
 * Answers to Quizzes and Exercises
   :PROPERTIES:
