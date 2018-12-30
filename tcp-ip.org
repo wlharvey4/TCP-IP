@@ -4,24 +4,14 @@
 #+AUTHOR: WLHarvey4
 #+DATE: <2018-12-17 Mon 22:01>
 #+SUBTITLE: And Networking
-#+SUBTITLE: Version {{{version}}} {{{time(%F %R)}}}
-#+MACRO: version 0.3.4
-
-#+TEXINFO_FILENAME:tcp-ip.info
-#+TEXINFO_CLASS: info
-#+TEXINFO_HEADER:
-#+TEXINFO_POST_HEADER:
-#+TEXINFO_DIR_CATEGORY: Networking
-#+TEXINFO_DIR_TITLE:TCP/IP
-#+TEXINFO_DIR_DESC:All About TCP/IP
-#+TEXINFO_PRINTED_TITLE:All About TCP/IP
-#+OPTIONS: H:4
+#+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
+#+MACRO: VERSION 0.4.0
 
 * Part I    --- TCP/IP Basics
 
 This section discusses the basics of TCP/IP and how it works.
 ** What TCP/IP Is
-@@texinfo: @heading Objectives@@
+{{{heading(Objectives)}}}
     + Networks and network protocols
     + History of TCP/IP
     + Important features of TCP/IP
@@ -35,17 +25,19 @@ This section discusses the basics of TCP/IP and how it works.
 #+CINDEX: network
 #+CINDEX: RFC
 :END:
-@@texinfo:@heading Summary@@
+{{{heading(Summary)}}}
 
-- Transmission Control Protocol/Internet    Protocol (TCP/IP)  :: a _protocol system_; a collection
-     of protocols  that supports  network communications.  The  answer to the  question _What  is a
-     protocol?_ begins with the question _What is a network?_
+- Transmission Control Protocol/Internet    Protocol (TCP/IP)  ::
+     a _protocol system_; a collection of protocols that supports network
+     communications.  The answer to the question _What is a protocol?_ begins
+     with the question _What is a network?_
 
-      This section describes what a *network* is and shows why networks /need/ *protocols*.  This
-      section explains what *TCP/IP* is, what it does, and where it began.
 
-      @@texinfo: @subheading After studying this section, you should be able to:@@
+     This section describes what a *network* is and shows why networks /need/
+     *protocols*.  This section explains what *TCP/IP* is, what it does, and
+     where it began.
 
+      {{{subheading(After studying this section, you should be able to:)}}}
       - Define the term _network_
       - Explain what a network _protocol suite_ is
       - Discuss the history of TCP/IP
@@ -499,21 +491,21 @@ TCP/IP's oversight organizations, and discussed RFCs.
 
 ** How TCP/IP Works
 
-@@texinfo:@heading Objectives@@
+{{{heading(Objectives)}}}
 
     + TCP/IP protocol system
     + The OSI Model
     + Data packages
     + How TCP/IP protocols interact
 
-@@texinfo:@heading Summary@@
+{{{heading(Summary)}}}
       TCP/IP is a system (suite) of protocols; a protocol is a system of rules and procedures.  The
       hardware and software of the communicating computers carry out the rules of TCP/IP
       communications --- the user does not have to get involved with the details.  A working
       knowledge of TCP/IP is essential if you want to navigate through the configuration and
       troubleshoot problems with TCP/IP networks.
 
-      @@texinfo:@subheading At the completion:@@
+      {{{subheading(At the completion:)}}}
 
       - Describe the layers of the TCP/IP protocol system, and the purpose of each layer
 
@@ -1554,9 +1546,22 @@ A protocol system (such as TCP/IP) must be responsible for the following tasks:
 @@texinfo:@listoffloats Table@@
 
 
-
-
 * Index
   :PROPERTIES:
   :INDEX: cp
   :END:
+
+* Macros                                                           :noexport:
+  #+macro: heading @@texinfo:@heading $1@@
+  #+macro: subheading @@texinfo:@subheading $1@@
+
+* Settings                                                         :noexport:
+#+TEXINFO_FILENAME:tcp-ip.info
+#+TEXINFO_CLASS: info
+#+TEXINFO_HEADER:
+#+TEXINFO_POST_HEADER:
+#+TEXINFO_DIR_CATEGORY: Networking
+#+TEXINFO_DIR_TITLE:TCP/IP
+#+TEXINFO_DIR_DESC:All About TCP/IP
+#+TEXINFO_PRINTED_TITLE:All About TCP/IP
+#+OPTIONS: H:4
