@@ -5,7 +5,7 @@
 #+DATE: <2018-12-17 Mon 22:01>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.4.0
+#+MACRO: VERSION 0.4.1
 
 * Part I    --- TCP/IP Basics
 
@@ -492,7 +492,6 @@ TCP/IP's oversight organizations, and discussed RFCs.
 ** How TCP/IP Works
 
 {{{heading(Objectives)}}}
-
     + TCP/IP protocol system
     + The OSI Model
     + Data packages
@@ -524,30 +523,42 @@ TCP/IP's oversight organizations, and discussed RFCs.
 #+CINDEX: responsibilities, protocol system
 :END:
 
-@@texinfo: @heading The responsibilities of a protocol system.@@
-
+{{{heading(The responsibilities of a protocol system)}}}
 A protocol system (such as TCP/IP) must be responsible for the following tasks:
+  + Prepare data for the /transmission medium/ ::
 
+	Dividing messages into manageable chunks of data that will pass
+       efficiently through the transmission medium;
 
-  + Prepare data for the /transmission medium/ :: Dividing messages into
-       manageable chunks of data that will pass efficiently through the
-       transmission medium;
-  + Communicate with /network adaptor/ :: Interfacing with the network adaptor
-       hardware;
-  + Addressing :: the sending computer must be capable of targeting data to a
-                  receiving computer; the receiving computer must be capable of
+  + Communicate with /network adaptor/ ::
+
+  	Interfacing with the network adaptor hardware;
+
+  + Addressing ::
+
+  	the sending computer must be capable of targeting data to a receiving
+                  computer; the receiving computer must be capable of
                   recognizing a message that it is supposed to receive;
-  + Route data to /subnet/ :: Routing data to the subnet of the destination
-       computer, even if the source subnet and destination subnet are
-       dissimilar physical networks;
-  + Error • Flow • Acknowledge :: Performing error control, flow control, and
-       acknowledgment; for reliable communication, the sending and receiving
-       computers must be able to identify and correct faulty transmissions and
-       control the flow of data;
-  + Pass data to /network/ :: Accepting data from an application and passing it
-       to the network;
-  + Receive data from /network/ :: Receiving data from the network and passing
-       it to an application;
+
+  + Route data to /subnet/ ::
+
+  	Routing data to the subnet of the destination computer, even if the
+       source subnet and destination subnet are dissimilar physical networks;
+
+  + Error • Flow • Acknowledge ::
+
+  	Performing error control, flow control, and acknowledgment; for
+       reliable communication, the sending and receiving computers must be able
+       to identify and correct faulty transmissions and control the flow of
+       data;
+
+  + Pass data to /network/ ::
+
+  	Accepting data from an application and passing it to the network;
+
+  + Receive data from /network/ ::
+
+  	Receiving data from the network and passing it to an application;
 
 **** Modular Design
 :CI:
@@ -604,24 +615,33 @@ A protocol system (such as TCP/IP) must be responsible for the following tasks:
       | Network Access Layer         |
       |------------------------------|
 
-      + Network Access Layer :: Provides an interface with the physical
-           network.  Formats the data for the transmission medium and addresses
-           data for the subnet based on physical hardware addresses.  Provides
-           error control for data delivered on the physical network.
-      + Internet Layer :: Provides logical, hardware-independent addressing so
-                          that data can pass among subnets with different
-                          physical architectures.  Provides routing to reduce
-                          traffic and support delivery across the internetwork.
-                          Relates physical addresses (used at the Network
-                          Access layer) to logical addresses.
-      + Transport Layer :: Provides flow-control, error-control, and
-           acknowledgment services for the internetwork.  Serves as an
-           interface for network applications.
-      + Application Layer :: Provides applications for network troubleshooting,
-           file transfer, remote control, and internet activities.  Also
-           supports the network application programming interfaces (APIs) that
-           enable programs written for a particular operating environment to
-           access the network.
+      + Network Access Layer ::
+
+ 	   Provides an interface with the physical network.  Formats the data for
+           the transmission medium and addresses data for the subnet based on
+           physical hardware addresses.  Provides error control for data
+           delivered on the physical network.
+
+      + Internet Layer ::
+
+      Provides logical, hardware-independent addressing so that data can pass
+      among subnets with different physical architectures.  Provides routing to
+      reduce traffic and support delivery across the internetwork. Relates
+      physical addresses (used at the Network Access layer) to logical
+      addresses.
+
+      + Transport Layer ::
+
+           Provides flow-control, error-control, and acknowledgment services for
+           the internetwork.  Serves as an interface for network applications.
+
+      + Application Layer ::
+
+           Provides applications for network troubleshooting, file transfer,
+           remote control, and internet activities.  Also supports the network
+           application programming interfaces (APIs) that enable programs
+           written for a particular operating environment to access the
+           network.
 
 ***** Added Information
 :CI:
@@ -681,27 +701,46 @@ A protocol system (such as TCP/IP) must be responsible for the following tasks:
      |                      | Physical Layer     |
      |----------------------+--------------------|
 
-     + Physical Layer :: Converts the data into the stream of electrical or
-                         analog pulses that will actually cross the
-                         transmission medium and oversees the transmission of
-                         the data.
-     + Data Link Layer :: Provides an interface with the network adaptor;
-          maintains logical links for the subnet.
-     + Network Layer :: Supports logical addressing and routing.
-     + Transport Layer :: Provides error control and flow control for the
-          internetwork.
-     + Session Layer :: Establishes sessions between communicating applications
-                        on the communicating computers.
-     + Presentation Layer :: Translates data to a standard format; manages
-          encryption and data compression.
-     + Application Layer :: Provides a network interface for applications;
-          supports network applications for file transfer, communcations, and
-          so forth.
+     + Physical Layer ::
+
+        Converts the data into the stream of electrical or analog pulses that
+                         will actually cross the transmission medium and
+                         oversees the transmission of the data.
+
+     + Data Link Layer ::
+
+          Provides an interface with the network adaptor; maintains logical links
+          for the subnet.
+
+     + Network Layer ::
+
+       Supports logical addressing and routing.
+
+     + Transport Layer ::
+
+        Provides error control and flow control for the internetwork.
+
+     + Session Layer ::
+
+          Establishes sessions between communicating applications on the
+                        communicating computers.
+
+     + Presentation Layer ::
+
+          Translates data to a standard format; manages encryption and data
+          compression.
+
+     + Application Layer ::
+
+          Provides a network interface for applications; supports network
+          applications for file transfer, communcations, and so forth.
+
 
      The TCP/IP model and the OSI model are *standards*, not
      *implementations*.  Real-world implementations of TCP/IP do not always map
      cleanly to the models shown, and the perfect correspondence is also a
      matter of some discussion.
+
 *** Data Packages
 
 *** TCP/IP Networking
