@@ -5,7 +5,7 @@
 #+DATE: <2018-12-17 Mon 22:01>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.4.1
+#+MACRO: VERSION 0.4.2
 
 * Part I    --- TCP/IP Basics
 
@@ -661,11 +661,11 @@ A protocol system (such as TCP/IP) must be responsible for the following tasks:
 #+CINDEX: OSI model
 :END:
     The networking industry has a standard *seven-layer model* for network
-    protocol architecture called the @@texinfo:@dfn{Open Systems
-    Interconnection (OSI) model}@@.  The OSI model represents an effort by the
-    International Organization for Standardization (ISO) to standardize the
-    design of network protocol systems to promote interconnectivity and open
-    access to protocol standards for software developers.
+    protocol architecture called the {{{dfn(Open Systems Interconnection (OSI)
+    model)}}}.  The OSI model represents an effort by the International
+    Organization for Standardization (ISO) to standardize the design of network
+    protocol systems to promote interconnectivity and open access to protocol
+    standards for software developers.
 
     Strictly speaking, TCP/IP does not conform to the OSI model.  The OSI model
     has been very influential in the growth and development of protocol
@@ -741,9 +741,317 @@ A protocol system (such as TCP/IP) must be responsible for the following tasks:
      cleanly to the models shown, and the perfect correspondence is also a
      matter of some discussion.
 
+     The OSI and TCP/IP models are most similar at the Transport and Internet
+     (Network) layers.  These layers include the nost identifiable and
+     distinguishing components of the protocol system, and it is not
+     coincidence that protocol systems are sometimes named for their Transport
+     and Network layer protocols.  The TCP/IP protocol suite is named for TCP,
+     a Transport layer protocol, and IP, an Internet/Network layer protocol.
+
 *** Data Packages
+    #+cindex: tcp/ip protocol stack
+    #+cindex: services
+    #+cindex: header
+    #+cindex: data
+    The important thing to remember about the TCP/IP protocol stack is that
+    each layer plays a role in the overall communication process.  Each layer
+    invokes /services/ that are necessary for that layer to perform its role.
+    As an outgoing transmission passes down through the stack, each layer
+    includes a bundle of relevant information, called a {{{dfn(header)}}} along
+    with the actual data.  The data package containing the header and the data
+    becomes the data that is repackaged at the next lower level with the next
+    lower layer's header.  The reverse process occurs when data is received on
+    the destination computer.  As the data moves up through the stack, each
+    layer unpacks the corresponding header and uses the information.
+
+    At the receiving end, the data packages are unpacked, one by one, as the
+    data climbs back up the protocol stack.  The Internet layer on the
+    receiving machine uses the information in the Internet layer header.  The
+    Transport layer uses the information in the Transport layer header.  At
+    each layer, the package of data takes a form that provides the necessary
+    information to the corresponding layer on the receiving machine.  Because
+    each layer is responsible for different functions, the form of the basic
+    data package is very different at each layer.
+
+**** Names for Data Packages
+     #+cindex: data package names
+     The data packet looks different at each layer, and at each layer it goes
+     by a different name.  The names for the data packages created at each
+     layer are as follows:
+
+     #+cindex: message
+     #+cindex: application layer data package
+     - Message ::
+
+                  The data package created at the *Application* layer
+
+     #+cindex: segment
+     #+cindex: transport layer's TCP protocol data package
+     #+cindex: TCP protocol
+     - Segment ::
+
+                  The data package created at the *Transport* layer, which
+                  encapsulates the Application layer message, is called a
+                  {{{dfn(Segment)}}} if it comes from the Transport layer's TCP
+                  protocol.
+
+     #+cindex: datagram
+     #+cindex: transport layer's UDP protocol data package
+     - Datagram ::
+
+                   #+cindex:User Datagram Protocol (UDP)
+                   #+cindex:UDP (User Datagram Protocol)
+                   If the data package comes the Transport layer's *User
+                   Datagram Protocol (UDP)* protocol, it is called a
+                   /datagram/.
+
+     - Datagram ::
+
+                   The data package at the *Network Access* layer, which
+                   encapsulates the *Transport* layer segment, is called a
+                   /datagram/.
+
+     #+cindex: frame
+     #+cindex: network access layer protocol data package
+     #+cindex: bitstream
+     - Frame ::
+
+                The data package at the *Network Access* layer, which
+                encapsulates and may subdivide the datagram, is called a
+                /frame/.  This frame is then turned into a bitstream at the
+                lowest sublayer of the Network Access layer.
 
 *** TCP/IP Networking
+    #+cindex: layered architecture
+    #+cindex: limitations, protocol layers
+    The practice of describing protocol systems in terms of their layers is
+    widespread and nearly universal.  The layering system provices insights
+    into the protocol system, and it's nearly impossible to describe TCP/IP
+    without first introducing its layered architecture.  However, focusing
+    solely on protocol layers also creates some limitations.
+
+    1. Talking about protocol layers rather than protocols introduces
+       additional abstractions to a subject that is already excruciatingly
+       abstract.
+    2. Itemizing the various protocols as subheads within the greater topic of
+       a protocol layer can give the false impression that all protocols are of
+       equal importance.  In fact, though every protocol has a role to play,
+       most of the functionality of the TCP/IP suite can be described in terms
+       of only a few of its most important protocols.
+    3. It is sometimes useful to view these important protocols in the
+       foreground, against the backdrop of the layering system.
+
+
+    The basic scenario is as follows:
+
+    1. Data passes from a protocol, network service, or application programming
+       #+cindex: application layer
+       #+cindex: port, tcp or udp
+       interface (API) operating at the *Application* layer through a TCP or
+       UDP port to either of the two *Transport* layer protocols (TCP or UDP).
+       Programs can access the network through either TCP or UDP, depending on
+       the program's requirements.
+         #+cindex: TCP
+       - *TCP* is a connection-oriented protocol.  Connection-oriented
+         protocols provide more sophisticated flow control and error control
+         than connectionless protocols.  TCP goes to great lengths to guarantee
+         the delivery of the data.  TCP is more reliable than UDP, but the
+         additional error checking and flow control mean that TCP is slower
+         than UDP.
+         #+cindex: UDP
+       - *UDP* is a connectionless protocol.  It is faster than TCP, but it is
+         not as reliable.  UDP offloads more of the error control
+         responsibilities to the application.
+
+    2. The data segment passes to the Internet level, where the *IP* protocol
+       #+cindex: ip protocol
+       #+cindex: data segment
+       #+cindex: datagram
+       provides logical-addressing information and encloses the data into a
+       datagram.
+
+    3. The IP datagram enters the Network Access layer, where it passes to
+       #+cindex: network access layer
+       #+cindex: physical network
+       #+cindex: frames
+       #+cindex: Address Resolution Protocol (ARP)
+       #+cindex: ARP
+       #+cindex: IP addresses
+       #+cindex: physical addresses
+       software components designed to interface with the physical network.
+       The Network Access layer creates one or more data frames designed for
+       entry into the physical network.  In the case of a LAN system such as
+       ethernet, the frame may contain physical address information obtained
+       from lookup tables maintained using the Internet layer ARP protocol.
+       (ARP, {{{dfn(Address Resolution Protocol)}}}), translates IP addresses
+       to physical addresses.
+
+    4. The data frame is converted to a stream of bits that is transmitted over
+       #+cindex: data frame
+       #+cindex: stream of bits
+       #+cindex: bitstream
+       #+cindex: network medium
+       the network medium.
+
+** Summary
+   - Layers of the TCP/IP protocol stack
+   - How those layers interrelate
+   - How the classic TCP/IP model relates to the seven-layer OSI networking model
+   - Data is packaged into the form that is most useful to the corresponding
+     layer on the receiving end
+   - The encapsulation of header information at each protocol layer
+   - Outline of the different terms used at each layer to describe the data package
+   - How the TCP/IP protocol system operates from the viewpoint of its most
+     important protocols: TCP, UDP, IP and ARP.
+
+*** Questions and Answers
+    - Q: What are the principal advantages of TCP/IP's modular design?
+    - A: Because of TCP/IP's modular design, the TCP/IP protocol stack can
+      adapt easily to specific hardware and operating environments.  One layer
+      can change without affecting the rest of the stack.  Breaking the
+      networking software into specific, well designed components also makes it
+      easier to write programs that interact with the protocol system.
+
+    - Q: What functions are provided at the Network Access layer?
+    - A: The Network Access layer provides services related to the specific
+      physical network.  These services include preparing, transmitting, and
+      receiving the freame over a particular transmission medium, such as an
+      ethernet cable.
+
+    - Q: Which OSI layer corresponds to the TCP/IP Internet layer?
+    - A: TCP/IP's Internet layer corresponds top the OSI Network layer.
+
+    - Q: Why is header information enclosed at each layer of the TCP/IP
+      protocol stack?
+    - A: Because each protocol stack on the receiving machine needs different
+      information to process the incoming data, each layer on the sending
+      machine encloses header information.
+
+
+*** Quiz
+    1. What two OSI layers map into the TCP/IP Network Access layer?
+    2. What TCP/IP layer is responsible for routing data from one network
+       segment to another?
+    3. What are the advantages and disadvantages of UDP as compared to TCP?
+    4. What does it mean to say that a layer encapsulates data?
+
+*** Exercises
+    1. List the functions performed by each layer in the TCP/IP stack.
+    2. List the layer(s) that deal with /datagrams/.
+    3. Explain how TCP/IP would have to change to use a newly invented type of
+       network hardware.
+    4. Explain what it means to say that TCP is a reliable protocol.
+
+*** Key Terms
+    #+cindex: address resolution protocol (ARP)
+    #+cindex: ARP
+    #+cindex: logical IP addresses
+    #+cindex: physical addresses
+    - Address Resolution Protocol (ARP) ::
+
+         A protocol that resolves logical IP addresses to physical addresses.
+
+    #+cindex: application layer
+    #+cindex: TCP/IP stack
+    #+cindex: network applications
+    #+cindex: interface to operating systemn
+    - Application Layer ::
+
+         The layer of the TCP/IP stack that supports network applications and
+         provides an interface to the local operating environment.
+
+    #+cindex: datagram
+    #+cindex: data package
+    #+cindex: Internet layer
+    #+cindex: Network Access layer
+    #+cindex: Transport layer
+    - Datagram ::
+
+         The data package passed between the Internet layer and the Network
+                  Access layer, or a data package passed between UDP at the
+                  Transport layer and the Internet layer.
+
+    #+cindex: frame
+    #+cindex: data package
+    #+cindex: Network Access layer
+    - Frame ::
+
+         The data package created at the Network Access layer.
+
+    #+cindex: header
+    #+cindex: data
+    - Header ::
+
+         A bundle of protocol information attached to the data at each layer
+                of the protocol stack.
+
+    #+cindex: internet layer
+    #+cindex: logical addressing
+    #+cindex: routing
+    - Internet layer ::
+
+         The layer of the TCP/IP stack that provides logical addressing and
+                        routing.
+
+    #+cindex: IP
+    #+cindex: internet protocol (IP)
+    #+cindex: logical addressing
+    #+cindex: routing
+    - IP (Internet Protocol) ::
+
+         The Internet layer protocol that provides logical addressing and
+         routing capabilities.
+
+    #+cindex: message
+    #+cindex: application layer
+    #+cindex: transport layer
+    - Message ::
+
+         In TCP/IP networking, a message is the data package passed between the
+                 Application layer and the Transport layer.  The term is used
+                 generically to describe a message from one entity to another
+                 on the network.  The term doesn't always refer to an
+                 Application layer data package.
+
+    #+cindex: network access layer
+    #+cindex: interface with physical network
+    - Network Access layer ::
+
+         The layer of thew TCP/IP stack that provides an interface with the
+         physical network.
+
+    #+cindex: segment
+    #+cindex: transport layer
+    #+cindex: internet layer
+    - Segment ::
+
+         The data package passed between TCP at the Transport layer and the
+                 Internet layer.
+
+    #+cindex: TCP
+    #+cindex: transmission control protocol (TCP)
+    #+cindex: connection-oriented protocol
+    #+cindex: transport layer
+    - TCP (Transmission Control Protocol) ::
+
+         A reliable, connection-oriented protocol of the Transport layer.
+
+    #+cindex: transport layer
+    #+cindex: error control
+    #+cindex: acknowledgment
+    #+cindex: interface for network applications
+    - Transport layer ::
+
+         The layer of the TCP/IP stack that provides error control and
+         acknowledgment and serves as an interface for network applications.
+
+    #+cindex: UDP
+    #+cindex: user datagram protocol (UDP)
+    #+cindex: connectionless protocol
+    #+cindex: transport layer
+    - UDP (User Datagram Protocol) ::
+
+         An unreliable, connectionless protocol of the Transport layer.
 
 * Part II   --- TCP/IP Protocol System
 
@@ -1593,6 +1901,7 @@ A protocol system (such as TCP/IP) must be responsible for the following tasks:
 * Macros                                                           :noexport:
   #+macro: heading @@texinfo:@heading $1@@
   #+macro: subheading @@texinfo:@subheading $1@@
+  #+macro: dfn @@texinfo:@dfn{@@$1@@texinfo:}@@
 
 * Settings                                                         :noexport:
 #+TEXINFO_FILENAME:tcp-ip.info
