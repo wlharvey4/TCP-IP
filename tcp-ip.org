@@ -2,10 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2018-12-17 Mon 22:01>
+#+DATE: <2018-12-30 Sun 23:02>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.4.2
+#+MACRO: VERSION 0.4.3
 
 * Part I    --- TCP/IP Basics
 
@@ -1062,21 +1062,137 @@ A protocol system (such as TCP/IP) must be responsible for the following tasks:
     + Network architectures
     + Ethernet frames
 
-    At the base of the TCP/IP protocol stack is the *Network Access layer*, the collection of
-    services and specifications that provide and manage access to the network hardware.  This
-    section teaches about the duties of the Network Access layer and how the Network Access layer
-    relates to the OSI model.  This section also looks at the network technology known as
-    *ethernet*.
+    At the base of the TCP/IP protocol stack is the *Network Access layer*, the
+    collection of services and specifications that provide and manage access to
+    the network hardware.  This section teaches about the duties of the Network
+    Access layer  and how the  Network Access layer  relates to the  OSI model.
+    This section also looks at the network technology known as *ethernet*.
 
     - Explain the Network Access layer
-    - Discuss how TCP/IP's Network Access layer relates to the OSI networking model
+    - Discuss how TCP/IP's Network Access layer relates to the OSI networking
+      model
     - Describe the purpose of a network architecture
     - List the contents of an ethernet frame
 
 *** Protocols and Hardware
+    #+cindex: Network Access layer
+    #+cindex: physical layer
+    #+cindex: data for physical layer
+    The {{{dfn(Network Access layer)}}} manages all the services and functions
+    necessary to prepare the data for the physical layer.  These
+    responsibilities include:
+
+      #+cindex: network adaptor
+    - Interfacing with the computer's network adaptor;
+    - Coordinating the data transmission with the conventions of the
+      appropriate access method;
+      #+cindex: transmission medium
+    - Converting the data into a format that will be transmitted into the
+      stream of electric or analog pulses across the transmission medium;
+    - Checking for errors in incoming data;
+    - Adding error-checking information to outgoing data so that the receiving
+      computer can check the data for errors.
+    - Any formatting tasks performed on outgoing data must occur in reverse
+      when the data reaches its destination and is received by the computer to
+      which it is addressed.
+
+
+    #+cindex: physical networks
+    The /Network Access layer/ defines the procedures for interfacing with the
+    network hardware and accessing the transmission medium.  Below the surface
+    of TCP/IP's Network Access layer, you'll find an intricate interplay of
+    hardware, software, and transmission-medium specifications.[FN:NAL] There
+    are many different types of physical networks that all have their own
+    conventions, and any one of these physical networks can form the basis for
+    the Network Access layer.  Even on a single physical network, different
+    adaptors and drivers can behave differently.
+
+    #+cindex: network adaptor driver
+    #+cindex: protocol software
+    #+cindex: configuration, Network Access layer
+    The Network Access layer is almost totally invisible to the everyday user.
+    The network adaptor driver, coupled with key low-level components of the
+    operating system and protocol software, manages most of the tasks relegated
+    to the Network Access layer, and a few short configuration steps are
+    usually all that is required of a user.
+
+    #+cindex: protocol system
+    #+cindex: services for protocol system
+    #+cindex: network adaptor
+    The logical, IP-style addressing exists entirely in the software.  The
+    protocol system requires additional services to deliver the data across a
+    specific local area network (LAN) system and up through the network adaptor
+    of a destination computer.  These services are the purview of the Network
+    Access layer.
+
+[FN:NAL] The diversity, complexity, and invisibility of the Network Access
+layer has caused some authors to exclude it from discussions of TCP/IP
+completely, asserting instead that the stack rests on LAN drivers below the
+Internet layer.  This viewpoint has some merit, but the Network Access layer
+actually is part of TCP/IP, and no discussion of the network-communication
+process is complete without it.
 
 *** Network Access Layer and the OSI Model
+    #+cindex: OSI networking model
+    #+cindex: protocol systems, understanding using OSI model
+    #+cindex: Network Access layer, re OSI concepts
+    #+cindex: Network Access layer, additional subdivisions
+    TCP/IP is officially independent of the seven-layer OSI networking model,
+    but the OSI model is often used as a general framework for understanding
+    protocol systems.  OSI terminology and concepts are particularly common in
+    discussions of the Network Access layer because the OSI model provides
+    additional subdivisions to the broad category of network access.  These
+    subdivisions reveal a bit more about the inner workings of this layer.
 
+    #+caption: OSI and the Network Access Layer
+    #+name: tab:Network-OSI
+    |----------------+-----------+----------------------|
+    | TCP/IP Model   | OSI Model | Data Link Sublayers  |
+    |----------------+-----------+----------------------|
+    | Network Access | Data Link | Media Access Control |
+    |                |           | Logical Link Control |
+    |----------------+-----------+----------------------|
+    |                | Physical  |                      |
+    |----------------+-----------+----------------------|
+
+
+    {{{heading(OSI Physical and Data Link Layers)}}}
+    #+cindex: Physical layer, OSI model
+    The TCP/IP Network Access layer roughly corresponds to the OSI *Physical*
+    and *Data Link* layers.
+      #+cindex: data frame
+      #+cindex: transmission medium
+    - The OSI Physical layer is responsible for turning the data frame into a
+      stream of bits suitable for the transmission medium; in other words, the
+      OSI Physical layer manages and synchronizes the electrical or analog
+      pulses that form the actual transmission.  On the receiving end, the
+      Physical layer reassembles these pulses into a data frame.
+      #+cindex: Data Link layer, OSI model
+      #+cindex: Data Link layer subdivisions
+    - The OSI Data Link layer performs two separate functions and is
+      accordingly subdivided into the follow two sublayers:
+        #+cindex: Media Access Control (MAC)
+        #+cindex: MAC
+      + Media Access Control (MAC) ::
+
+           #+cindex: network adaptor interface
+           #+cindex: network adaptor driver
+           #+cindex: MAC driver
+           #+cindex: MAC address
+           This sublayer provides an interface with the network adaptor.  The
+           network adaptor driver, in fact, is often called the MAC driver, and
+           the physical hardware address burned into the card at the factory is
+           often referred to as the MAC address.
+
+        #+cindex: Logical Link Control (LLC)
+        #+cindex: LLC
+      + Logical Link Control (LLC) ::
+
+           #+cindex: error-checking, Data Link layer
+           #+cindex: frames, error-checking
+           This sublayer performs error-checking functions for frames delivered
+           over the subnet and manages links between devices communicating on
+           the subnet.
 *** Network Architecture
 
 *** Physical Addressing
