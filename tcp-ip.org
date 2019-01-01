@@ -2,10 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2018-12-30 Sun 23:02>
+#+DATE: <2018-12-31 Mon 23:31>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.4.3
+#+MACRO: VERSION 0.4.4
 
 * Part I    --- TCP/IP Basics
 
@@ -1194,6 +1194,138 @@ process is complete without it.
            over the subnet and manages links between devices communicating on
            the subnet.
 *** Network Architecture
+    #+cindex: LAN
+    #+cindex: LAN architecture
+    #+cindex: network architecture
+    #+cindex: ethernet
+    #+cindex: physical addressing
+    #+cindex: transmission medium
+    In practice, LANs are not thought of in terms of protocol layers, but by
+    {{{dfn(LAN architecture)}}} or {{{dfn(network architecture)}}}.  Sometimes
+    a /network architecture/ is referred to as a /LAN type/ or a /LAN
+    topology/.  A /network architecture/, such as *ethernet*, provides a
+    *bundle of specifications* governing media access, physical addressing, and
+    the interaction of the computers with the transmission medium.  When you
+    decide on a /network architecture/, you are in effect deciding on a design
+    for the Network Access layer.
+
+    #+cindex: network architecture communication specifications
+    A /network architecture/ is a *design for the physical network* and *a
+    collection of specifications defining communications on that physical
+    network*.  The communication details are dependent on the physical details,
+    so the specifications usually come together as a complete package.  These
+    specifications include considerations such as the following:
+
+      #+cindex: access method
+    - Access method ::
+
+                       #+cindex: transmission medium
+                       An {{{dfn(access method)}}} is a set of rules defining
+                       how the computers will share the transmission medium.
+                       To avoid data collisions, computers must follow these
+                       rules when they transmit data.
+
+      #+cindex: data frame format
+    - Data frame format ::
+
+         #+cindex: datagram
+         #+cindex: data frame
+         #+cindex: physical network
+         The IP-level datagram from the Internet layer is encapsulated in a
+         data frame with a predefined format.  The data enclosed in the header
+         must supply the information necessary to deliver data on the physical
+         network.
+
+      #+cindex: cable type
+    - Cabling type ::
+
+                      #+cindex: bitstream
+                      #+cindex: adaptor
+                      The type of cable used for a network has an effect on
+                      certain other design parameters, such as the electrical
+                      properties of the bitstream transmitted by the adapter.
+
+      #+cindex: cabling rule
+    - Cabling rules ::
+
+                       #+cindex: cable, connector
+                       The protocols, cable type, and electrical properties of
+                       the transmission have an effect on the maximum and
+                       minimum lengths for the cable and for the cable
+                       connector specifications.
+
+**** Separation of Concerns
+    #+cindex: physical network characteristics
+    #+cindex: hardware design
+    Details such as the /cable type/ and /connector type/ are not the direct
+    responsibility of the Network Access layer, but to design the software
+    components of the Network Access layer, developers must assume a specific
+    set of characteristics for the physical network.  Thus, the network access
+    software must come with a specific hardware design.
+
+    #+cindex: TCP/IP stack, little interaction with hardware
+    #+cindex: transmission media
+    The important point is that *the layers above the Network Access layer
+    /don't/ have to worry about the hardware design*.  The TCP/IP stack is
+    designed so that all the details of interacting with the hardware occur at
+    the Network Access layer.  This design lets TCP/IP operate over a great
+    variety of different transmission media.
+
+**** Architectures of the Network Access Layer
+     #+cindex: architectures, Network Access layer
+     Some of the architectures inhabiting the Network Access layer are:
+
+       #+cindex: IEEE 802.3, 802.11, 802.16
+       #+cindex: ethernet, 802.3
+       #+cindex: wireless, 802.11
+       #+cindex: WIMAX
+       #+cindex: Point-to-Point protocol, PPP
+       #+cindex: PPP
+     - IEEE 802.3 (ethernet) ::
+          The familiar cable-based network used in many offices and homes
+     - IEEE 802.11 (wireless networking) ::
+          The wireless LAN networking technology found in offices, homes, and
+          coffee houses
+     - IEEE 802.16 (WIMAX) ::
+          A technology used for mobile wireless connectivity over long distances
+     - Point-to-Point Protocol (PPP) ::
+          The protocol used for modem connections over a telephone line
+
+
+     Several other network architectures are also supported by TCP/IP.  In each
+     case the modular nature of the protocol stock means that the
+     hardware-conscious software components operating at this level can
+     interface with the hardware-independent upper levels supporting services
+     such as logical addressing.
+
+     #+begin_cartouche
+     {{{cartouche(Because the Network Access layer
+     encapsulates the details of the transmission medium\, the upper layers of
+     the stack can operate independently of the hardware.)}}}
+     #+end_cartouche
+
+**** Network Configuration Dialog
+     #+cindex: hardware-address layer interaction
+     Although the intricacies of the protocol layer intefaces are largely
+     invisible to the user, you can often get a glimpse of this relationship
+     between the *hardware-based layer* and the *logical addressing layer*
+     through the /network configuration dialog/ for your operating system.
+
+     #+cindex: ethernet
+     #+cindex: Bluetooth
+     #+cindex: modem
+     #+cindex: Airport wireless
+     The Mac OS X configuration dialog lets you associate a number of different
+     architectures with the TCP/IP configuration, including architectures for:
+     - ethernet
+     - Bluetooth
+     - modem
+     - Airport wireless
+
+
+     #+cindex: IEEE 802.11 wireless LAN specification
+     Airport wireless is an Apple-polished repackaging of the IEEE 802.11
+     wireless LAN specification.
 
 *** Physical Addressing
 
@@ -2018,6 +2150,7 @@ process is complete without it.
   #+macro: heading @@texinfo:@heading $1@@
   #+macro: subheading @@texinfo:@subheading $1@@
   #+macro: dfn @@texinfo:@dfn{@@$1@@texinfo:}@@
+  #+macro: cartouche @@texinfo:@noindent@sansserif{@@$1@@texinfo:}@@
 
 * Settings                                                         :noexport:
 #+TEXINFO_FILENAME:tcp-ip.info
@@ -2029,3 +2162,8 @@ process is complete without it.
 #+TEXINFO_DIR_DESC:All About TCP/IP
 #+TEXINFO_PRINTED_TITLE:All About TCP/IP
 #+OPTIONS: H:4
+
+
+# Local Variables:
+# org-texinfo-table-default-markup: "strong"
+# End:
