@@ -2,10 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2018-12-31 Mon 23:31>
+#+DATE: <2019-01-01 Tue 13:46>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.4.4
+#+MACRO: VERSION 0.4.5
 
 * Part I    --- TCP/IP Basics
 
@@ -1323,6 +1323,12 @@ process is complete without it.
      - Airport wireless
 
 
+     #+caption: Mac OS X Network Configuration
+     #+name: fig:network
+     #+attr_texinfo: :width 4in :options type=Image
+     [[./images/Network.png]]
+
+
      #+cindex: IEEE 802.11 wireless LAN specification
      Airport wireless is an Apple-polished repackaging of the IEEE 802.11
      wireless LAN specification.
@@ -2140,7 +2146,11 @@ process is complete without it.
   :END:
 @@texinfo:@listoffloats Table@@
 
-
+* List of Images
+  :PROPERTIES:
+  :APPENDIX: t
+  :END:
+@@texinfo:@listoffloats Figure@@
 * Index
   :PROPERTIES:
   :INDEX: cp
