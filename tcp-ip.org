@@ -2,10 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2019-01-01 Tue 13:46>
+#+DATE: <2019-01-02 Wed 22:42>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.4.5
+#+MACRO: VERSION 0.4.6
 
 * Part I    --- TCP/IP Basics
 
@@ -1333,7 +1333,74 @@ process is complete without it.
      Airport wireless is an Apple-polished repackaging of the IEEE 802.11
      wireless LAN specification.
 
+**** Ethernet Example
+     #+cindex: ethernet
+     As an example of the types of problems and solutions that occur /within/
+     the Network Access layer, the following sections take a closer look at the
+     important architecture known as *ethernet*.  Keep in mind that ethernet is
+     just one example of a Network Access layer protocol system.  When you
+     learn about other hardware technologies later, such as /dial-up/, /digital
+     subscriber line (DSL)/, /wireless/, and /wide area networking methods/,
+     keep in mind that each of these technologies has its own unique
+     requirements that are reflected in a unique design for the Network Access
+     protocols and drivers.
 *** Physical Addressing
+    #+cindex: address, logical IP
+    #+cindex: address, physical
+    #+cindex: network adaptor
+    #+cindex: address, MAC
+    #+cindex: MAC address
+    #+cindex: Media Access Control (MAC) sublayer
+    #+cindex: network architecture specification
+    The Network Access layer is necessary to relate the logical IP address,
+    which is configured through the protocol software, with the actual
+    permanent *physical address* of the network adaptor.  This physical address
+    is often called the MAC address because, within the OSI model, physical
+    addressing is the responsibility of the *Media Access Control (MAC)
+    sublayer*.  Because the physical addressing system is encapsulated within
+    the Network Access layer, the address can take on a different form
+    depending on the network architecture specification.
+
+    {{{heading(Ethernet Hardware)}}}
+    #+cindex: ethernet
+    #+cindex: network adaptor card, ethernet
+    In the case of ethernet, the physical address is often burned into the
+    networking hardware at the factory, although some modern network adaptors
+    offer a programmable physical address.  Ethernet hardware used to consist
+    of a network adaptor card inserted into one of the computer's expansion
+    slots.  Recently, vendors have started building ethernet functionality into
+    the motherboard.
+
+    {{{heading(Logical Addressing)}}}
+    #+cindex: data frames
+    #+cindex: LAN
+    #+cindex: physical address
+    Data frames sent across the LAN must use this physical address to identify
+    the source and destination adoptors, but the lengthy physical address (48
+    bits in the case of ethernet) is so unfriendly that it is impractical for
+    people to use.  Encoding the physical address at higher protocol levels
+    compromises the flexible modular architecture of TCP/IP, which requires
+    that the upper layers remain independent of physical details.
+
+    {{{heading(Address Resolution Protocol)}}}
+    #+cindex: Address Resolution protocol (ARP)
+    #+cindex: Reverse Address Resolution Protocol (RARP)
+    #+cindex: ARP
+    #+cindex: RARP
+    #+cindex: address, IP
+    #+cindex: logical address
+    #+cindex: address, logical IP
+    TCP/IP uses the Address Resolution Protocol (ARP) and Reverse ARP (RARP) to
+    relate IP addresses to the physical addresses of the network adaptors on
+    the local network.  ARP and RARP  provide a link between the logical IP
+    addresses seen by the user and the (invisible) hardware addresses used on
+    the LAN.
+
+    #+begin_cartouche
+    Keep in mind that the address used by the ethernet software is not the same
+    logical IP address, but this physical address maps to IP address at the
+    interface with the Internet layer.
+    #+end_cartouche
 
 *** Ethernet
 
