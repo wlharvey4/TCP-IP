@@ -2,10 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2019-01-02 Wed 22:42>
+#+DATE: <2019-01-05 Sat 15:52>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.4.6
+#+MACRO: VERSION 0.4.7
 
 * Part I    --- TCP/IP Basics
 
@@ -1403,6 +1403,64 @@ process is complete without it.
     #+end_cartouche
 
 *** Ethernet
+    #+cindex: ethernet
+    #+cindex: architecture, ethernet
+    #+cindex: cable, ethernet
+    #+cindex: network adaptors, ethernet
+    The ethernet architecture is popular because of its modest price; ethernet
+    cable is inexpensive and easily installed.  Ethernet network adapters and
+    ethernet hardware components are also relatively inexpensive.  Wired
+    ethernet is also typically faster than equivalentg wireless technologies,
+    and the cable provides a natural barrier to snooping and other security
+    issues associated with wireless networks.
+
+    {{{heading(Carrier Sense Multiple Access with Collision Detection (CSMA/CD))}}}
+    #+cindex: classic ethernet network
+    #+cindex: traditional ethernet netwwork
+    #+cindex: ethernet, traditional, classic
+    #+cindex: transmission medium, common
+    #+cindex: carrier sense multiple access with collission detection (CSMA/CD)
+    #+cindex: CSMA/CD
+    #+cindex: access method
+    On a classic ethernet network, all computers share a common transmission
+    medium.  Ethernet uses an access method called {{{dfn(carrier sense
+    multiple access with collision detection (CSMA)/CD))}}} for determining
+    when a computer is free to transmit data on to the access medium.  Using
+    CSMA/CD, all computers monitor the transmission medium and wait until the
+    line is available before transmitting.  If two computers try to transmit at
+    the same time, a collision occurs.  The computers stop, wait for a random
+    time interval, and attempt to transmit again.
+
+    #+cindex: ethernet, problem
+    #+cindex: ethernet switches
+    #+cindex: switches, ethernet
+    #+cindex: collisions, ethernet
+    #+cindex: ethernet collisions
+    Traditional ethernet works well under light-to-moderate use, but suffers
+    from high collision rates under heavy use.  On modern ethernet networks,
+    devices such as /switches/ monage the traffic to reduce the incidence of
+    collisions, thereby allowing ethernet to operate more efficiently.
+
+    {{{heading(Ethernet Media)}}}
+    #+cindex: ethernet media
+    #+cindex: media, ethernet
+    #+cindex: ethernet, hub-based
+    #+cindex: 10BASE-T ethernet
+    #+cindex: 10 Mbps ethernet
+    #+cindex: 100Mbps ethernet
+    #+cindex: fast ethernet
+    #+cindex: 1000 Mbps ethernet
+    #+cindex: gigabit ethernet
+    #+cindex: coaxial cable, ethernet
+    #+cindex: transmission medium, coaxial cable, ethernet
+    #+cindex: network device, ethernet
+    Ethernet is capable of using a variety of media.  Conventional hub-based
+    10BASE-T ethernet was originally intended to operate at a baseband speed of
+    10Mbps, but 100 Mbps ``fast ethernet'' is now quite common.  In addition,
+    1000 Mbps (gigabit) ethernet systems are availabe.  Early ethernet sytstems
+    often used a continuous strand of coaxial cable as a transmission medium,
+    but by far the most common scenario today is for the computers to attach to
+    a single network device.
 
 *** Ethernet Frame
 ** The Internet Layer
