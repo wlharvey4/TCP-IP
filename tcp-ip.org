@@ -2,10 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2019-01-05 Sat 15:52>
+#+DATE: <2019-01-05 Sat 22:17>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.4.7
+#+MACRO: VERSION 0.4.8
 
 * Part I    --- TCP/IP Basics
 
@@ -1463,6 +1463,99 @@ process is complete without it.
     a single network device.
 
 *** Ethernet Frame
+    #+cindex: datagram
+    #+cindex: physical network
+    #+cindex: network adaptor card
+    The Network Access layer software accepts a /datagram/ from the Internet
+    layer and converts the data to a form that is consistent with the
+    specifications of the physical network.  In the case of ethernet, the
+    software of the Network Access layer must prepare the data for transmission
+    through the hardware of the network adaptor card.
+
+    {{{heading(Steps Taken by Network Access Layer to Prepare a Datagram for Transmission)}}}
+    #+cindex: datagram
+    When the ethernet software receives a datagram from the Internet layer, it
+    performs the following steps:
+
+       #+cindex: Internet layer data
+       #+cindex: data field
+       #+cindex: ethernet frames
+    1. Breaks Internet layer data into smaller chunks, if necessary, which are
+       then sent in the /data field/ of the /ethernet frames/.  The total size
+       of the ethernet frame must be between 64 bytes and 1518 bytes, not
+       including the /preamble/.
+       #+cindex: frames
+       #+cindex: IEEE 802.3 ethernet frame
+    2. Packages the chunks of data into /frames/.  Each frame includes data as
+       well as other information that the network adaptors on the ethernet need
+       to process the frame.  An IEEE 802.3 ethernet frame includes the
+       following:
+
+       #+cindex: preamble
+       #+cindex: frame beginning, preamble
+       - Preamble ::
+                     A sequence of bits used to mark the beginning of the frame
+                     (8 bytes, the last of which is the 1-byte Start Frame
+                     Delimiter).
+
+       #+cindex: address, recipient, ethernet
+       - Recipient address ::
+            The 6-byte (48-bit) physical address of the network adaptor that is
+            sending the frame.
+
+       #+cindex: address, source, ethernet
+       - Source address ::
+                           The 6-byte (48-bit) physical address of the network
+                           adaptor that is sending the frame.
+
+       #+cindex: VLAN tag, ethernet
+       #+cindex: 802.1q standard
+       #+cindex: LANs, virtual
+       #+cindex: network switch
+       - Optional VLAN tag ::
+            This optional 16-bit field, described in the 802.1q standard, is
+            designed to allow multiple virtual LAN's to operate through the
+            same network switch.
+
+       #+cindex: length, ethernet
+       - Length ::
+                   A 2-byte (16-bit) field indicating the size of the data
+                   field.
+
+       #+cindex: data, ethernet
+       - Data ::
+                 The data that is transmitted with the frame.
+
+       #+cindex: Frame Check Sequence (FCS)
+       #+cindex: FCS, Frame Check Sequence
+       #+cindex: data transmissions, verifying
+       #+cindex: cyclical redundancy check (CRC)
+       #+cindex: CRC, cyclical redundancy check
+       #+cindex: data, lost
+       - Frame Check Sequence (FCS) ::
+            A 4-byte (32-bit) checksum value for the frame.  The FCS is a
+            common means of verifying data transmissions.  The sending computer
+            calculates a *cyclical redundancy check (CRC)* value for the frame
+            and encodes the CRC value in the frame.  The receiving computer
+            then recalculates the CRC and checks the FCS field to see whether
+            the values match.  If the values don't match, some data was lost or
+            changed during transmission, in which case a higher-level protocol
+            may request retransmission.
+
+       #+cindex: Physical layer
+       #+cindex: bitstream, from frame
+       #+cindex: transmission medium
+    3. Passes the data frame to lower-level components corresponding to OSI's
+       Physical layer, which converts the frame into a bitstream and sends it
+       over the transmission medium.
+
+
+    {{{subheading(Receiving Ethernet Network Adaptors)}}}
+    #+cindex: frame, processing
+    The other network adaptors on the ethernet network receive the frame and
+    check the destination address.  If the destination address matches the
+    address of the network adaptor, the adoptor software process the incoming
+    frame and passes the data to higher layers of the protocol stack.
 ** The Internet Layer
 
 *** Objective
