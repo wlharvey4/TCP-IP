@@ -2,10 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2019-01-05 Sat 22:17>
+#+DATE: <2019-01-05 Sat 22:34>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.4.8
+#+MACRO: VERSION 0.4.9
 
 * Part I    --- TCP/IP Basics
 
@@ -1556,6 +1556,39 @@ process is complete without it.
     check the destination address.  If the destination address matches the
     address of the network adaptor, the adoptor software process the incoming
     frame and passes the data to higher layers of the protocol stack.
+
+*** Summary of Network Access Layer
+    This section discussed:
+      #+cindex: Network Access layer
+    - the *Network Access layer*
+
+
+    {{{NI}}}the most diverse and arguably the most complex layer in the TCP/IP
+    protocol stack.
+
+    - Network Access layer ::
+         defines the procedures for interfacing with the network hardware and
+         accessing the transmission medium.
+
+
+    #+cindex: ethernet
+    There are many types of LAN architectures and, therefore, many different
+    *specifications* for the Network Access layer.  As an example of how the
+    Network Access layer handles data transmission, this section took a close
+    look at *ethernet*.  There are many other ways to connect computers.  Any
+    networking technology must have some means of preparing /data/ for the
+    /physical network/; therefore, any TCP/IP technology must have a Network
+    Access layer.
+
+    More will be presented about other physical network scenarios, such as:
+    - modems
+    - wireless LANs
+    - mobile networking
+    - WAN technologies
+
+
+    {{{NI}}}in later sections.
+
 ** The Internet Layer
 
 *** Objective
@@ -2379,6 +2412,7 @@ process is complete without it.
   #+macro: subheading @@texinfo:@subheading $1@@
   #+macro: dfn @@texinfo:@dfn{@@$1@@texinfo:}@@
   #+macro: cartouche @@texinfo:@noindent@sansserif{@@$1@@texinfo:}@@
+  #+macro: NI @@texinfo:@noindent @@
 
 * Settings                                                         :noexport:
 #+TEXINFO_FILENAME:tcp-ip.info
