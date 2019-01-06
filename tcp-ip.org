@@ -2,10 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2019-01-05 Sat 22:34>
+#+DATE: <2019-01-06 Sun 10:13>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.4.9
+#+MACRO: VERSION 0.5.0
 
 * Part I    --- TCP/IP Basics
 
@@ -1588,6 +1588,136 @@ process is complete without it.
 
 
     {{{NI}}}in later sections.
+
+**** Question & Answer Network Access Layer
+     - Q. ::
+             #+cindex: services, Network Access layer
+             What types of services are defined at the Network Access layer?
+     - A. ::
+             #+cindex: physical network
+             The Network Access layer includes services and specifications that
+             manage the process of accessing the physical network.
+     - Q. ::
+             #+cindex: OSI - TCP/IP correspondence
+             Which OSI layers correspond to the TCP/IP Network Access layer?
+     - A. ::
+             #+cindex: Data Link layer
+             #+cindex: Physical layer
+             The Network Access layer roughly corresponds with the OSI Data
+             Link layer and Physical layer.
+     - Q. ::
+             #+cindex: LAN architecture, popular
+             What is the most common LAN archicture?
+     - A. ::
+             #+cindex: ethernet
+             The most common LAN architecture is ethernet, although wireless
+             LAN technologies are becoming increasingly popular.
+     - Q. ::
+             #+cindex: CSMA/CD
+             What is CSMA/CD?
+     - A. ::
+             #+cindex: carrier sense multiple access with collission detection
+             #+cindex: network access method
+             CSMA/CD is carrier sense multiple access with collision detection,
+             a network access method used by ethernet.  Under CSMA/CD, the
+             computers on a network wait for a moment to transmit and, if two
+             computers attempt to transmit at once, they both stop, wait for a
+             random interval, and transmit again.
+
+**** Workshop Network Access Layer
+     The following workshop is composed of a series of quiz questions and
+     practical exercises.  The quiz questions are designed to test your overall
+     understanding of the current material.  The practical exercises are
+     intended to afford you the opportunity to apply the concepts discussed
+     during the current section, as well as build upon the knowledge acquired
+     in previous hours of study.  Take the time to complete the quiz questions
+     and exercises before continuing.  Refer to Appendix A ``Answers to Quizzes
+     and Exercises,'' for answers.
+
+***** Quiz Workshop Network Access Layer
+
+      1. What is a CRC?
+      2. What is a collision detection on an ethernet network?
+      3. How big is an ethernet physical address?
+      4. What does ARP do?
+
+***** Exercises Workshop Network Access Layer
+
+         #+cindex: protocol, related physical to IP addresses
+         #+cindex: addresses, protocol
+      1. List the two protocols that relate physical addresses with IP addresses.
+      2. List at least three network architectures.
+      3. Explain the functions performed by the OSI Media Access Control and
+         Logical Link Control layers.
+
+***** Key Terms Network Access Layer
+
+      Review the following list of key terms:
+
+        #+cindex: access method
+      - Access method: ::
+                          A procedure for regulating access to the transmission medium.
+        #+cindex: CRC
+        #+cindex: cyclical redundancy check
+        #+cindex: data frame, contents, check
+      - CRC (cyclical redundancy check): ::
+           A checksum calculation used to verify the contents of a data frame.
+        #+cindex: CSMA/CD
+        #+cindex: carrier sense multiple access with collision detection
+        #+cindex: network access method, ethernet
+      - CSMA/CD (carrier sense multiple access with collision detection): ::
+           The network access method used by ethernet.
+        #+cindex: Data Link layer
+      - Data Link layer: ::
+           The second layer of the OSI model.
+        #+cindex: ethernet
+        #+cindex: CSMA/CD
+      - Ethernet: ::
+                     A very popular LAN architecture, using the CSMA/CD
+                     network-access method.
+        #+cindex: Frame Check Sequence (FCS)
+        #+cindex: FCS
+        #+cindex: CRC checksum
+        #+cindex: data, verify
+      - Frame Check Sequence (FCS): ::
+           A field within an ethernet frame containing a CRC-based checksum
+           value used to verify the data.
+        #+cindex: Logical Link Control (LLC) sublayer
+        #+cindex: sublayer, LLC
+        #+cindex: error checking, OSI
+        #+cindex: links, between devices
+      - Logical Link Control (LLC) sublayer: ::
+           A sublayer of OSI's Data Link layer that is responsible for error
+           checking and managing links between devices on the subnet.
+        #+cindex: Media Access Control (MAC) sublayer
+        #+cindex: MAC sublayer
+        #+cindex: sublayer, MACV
+        #+cindex: network adaptor, interface, with
+      - Media Access Control (MAC) sublayer: ::
+           A sublayer of OSI's Data Link layer that is responsible for the
+           interface with the network adaptor.
+        #+cindex: network architecture
+        #+cindex: physical network, specification
+        #+cindex: access method
+        #+cindex; data frame
+        #+cindex: network cabling
+      - Network architecture: ::
+           A complete specification for a physical network, including
+           specifications for access method, data frame, and network cabling.
+        #+cindex: physical layer
+        #+cindex: OSI, first layer
+        #+cindex: data frame
+        #+cindex: bitstream
+        #+cindex: transmission medium
+      - Physical layer ::
+                          The first OSI layer, responsible for translating the
+                          data frame into a bitstream suitable for the
+                          transmission medium.
+        #+cindex: preamble
+        #+cindex: data frame, beginning
+      - Preamble: ::
+                     A series of bits marking the beginning of a data frame
+                     transmission.
 
 ** The Internet Layer
 
