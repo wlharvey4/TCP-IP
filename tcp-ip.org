@@ -2,10 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2019-01-16 Wed 17:06>
+#+DATE: <2019-01-16 Wed 18:42>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.5.2
+#+MACRO: VERSION 0.5.3
 
 * Part I    --- TCP/IP Basics
 
@@ -96,7 +96,7 @@ TCP/IP's design is  a result of its historical role  as the protocol system for 
 the Internet.  The Internet grew from research originally performed by the United States Department
 of Defense.   Defense officials wondered  whether it would be  possible for disparate  computers to
 share    information.    These    officials   created    a    network   that    became   know    as
-@@texinfo:@dfn{ARPAnet}@@,  named   for  the  @@texinfo:@cite{Advanced  Research   Projects  Agency
+{{{dfn(ARPAnet)}}},  named   for  the  @@texinfo:@cite{Advanced  Research   Projects  Agency
 (ARPA)}@@.
 
 As this network began to take sharep, a group of computer scientists started to work on a versatile
@@ -136,8 +136,8 @@ started to look for ways to connect.  One  solution was a dial-up connection thr
 offered network connnectivity through a phone line.
 
 But users also wanted to connect to other nearby computers in their own office---to share files and
-access peripheral devices.  To address this need, another network concept, the @@texinfo:@dfn{local
-area network (LAN)}@@, began to take form.
+access peripheral devices.  To address this need, another network concept, the {{{dfn(local
+area network (LAN))}}}, began to take form.
 
 Early LAN protocols did not provide Internet access and were designed around proprietary protocoal
 systems.  Many did not support routing of any kind.  Computers in a single workgroup would talk to
@@ -223,9 +223,9 @@ On a /routed network/, administrators need a  way to subdivide the network into 
 its destination.
 
 ***** Logical Addressing Through Subnetting
-TCP/IP provides this subnetting capability  through *logical addressing*.  A @@texinfo:@dfn{logical
-address}@@ is an address configured through the  network software.  In TCP/IP, a computer's logical
-address is called an @@texinfo:@dfn{IP address}@@.  An IP address can include:
+TCP/IP provides this subnetting capability  through *logical addressing*.  A {{{dfn(logical
+address)}}} is an address configured through the  network software.  In TCP/IP, a computer's logical
+address is called an {{{dfn(IP address)}}}.  An IP address can include:
 	+ a /network ID number/ identifying a network
         + a /subnet ID number/ identifying a subnet on the network
         + a /host ID number/ identifying the computer on the subnet
@@ -287,17 +287,17 @@ router.
 :END:
  - Domain Name    System (DNS)  ::  A numberic IP  address is designed  for the convenience  of the
       computer rather than the  convenience of the user.  TCP/IP therefore  provides for a parallel
-      structure of user-oriented alphanumeric names, called *domain names* or @@texinfo:@dfn{Domain
-      Name System (DNS)}@@.
+      structure of user-oriented alphanumeric names, called *domain names* or {{{dfn(Domain
+      Name System (DNS))}}}.
 
- - Name Resolution :: This  mapping of domain names to an IP  address is called @@texinfo:@dfn{name
-      resolution}@@.
+ - Name Resolution :: This  mapping of domain names to an IP  address is called {{{dfn(name
+      resolution)}}}.
 
- - Name Servers :: Special computers called @@texinfo:@dfn{name servers}@@ store tables showing how
+ - Name Servers :: Special computers called {{{dfn(name servers)}}} store tables showing how
                    to translate these domain names to and from IP addresses.
 
 The computer addresses comonly associated with email or the World Wide Web are expressed as DNS
-names.  TCP/IP's @@texinfo:@dfn{name service}@@ system provides for a hierarchy of name servers
+names.  TCP/IP's {{{dfn(name service)}}} system provides for a hierarchy of name servers
 that supply domain name/IP address mappings for DNS-registered computers on the Internet.  This
 means that the everyday user rarely has to enter or decipher an actual IP address.
 
@@ -336,7 +336,7 @@ play a part in the overall system of error control.
 Several network applications might be running on the same computer.  The protocol software must
 provide a means for determining which incoming packet belongs with each application.  In TCP/IP,
 this interface from the network to the application is accomplished through a system of logical
-channels called @@texinfo:@dfn{ports}@@.  Each port has a number that is used to identify the
+channels called {{{dfn(ports)}}}.  Each port has a number that is used to identify the
 port.  You can think of these ports as logical pipelines within the computer through which data can
 flow from the application to  (and from) the protocol software.
 
@@ -395,7 +395,7 @@ will mean that the Internet is at last truly interntional and unaffiliated.
 Because TCP/IP is a system of open standards that are not owned by any company or individual, the
 Internet community needs a comprehensive, independent, vendor-neutral process for proposing,
 discussing, and releasing additions and changes.  Most of the official documentation on TCP/IP is
-available through a series of @@texinfo:@dfn{Requests for Comments (RFCs)}@@.  The library of RFCs
+available through a series of {{{dfn(Requests for Comments (RFCs))}}}.  The library of RFCs
 includes Internet standards and reports from workgroups.  IETF official specifications are
 published as RFCs.  Many RFCs are intended to illuminate some aspect of TCP/IP or the Internet.
 You will find many references to RFCs throughout this book because most protocols of the TCP/IP
@@ -651,7 +651,7 @@ A protocol system (such as TCP/IP) must be responsible for the following tasks:
       transmission across the network, each layer on the sending machine adds a
       layer of information tot he data that is relevant to the corresponding
       layer on the receiving machine.  This process is sometimes referred to as
-      @@texinfo:@dfn{encapsulation}@@.
+      {{{dfn(encapsulation)}}}.
 
       See [[*Layers][By The Way---Layers]]
 
@@ -1830,6 +1830,99 @@ process is complete without it.
     delivery by physical address would be cumbersome because the permanent
     physical address built in to a network card does not allow you to impose a
     logical structure on the address space.
+
+    {{{heading(IP Protocol --- Address Resolution Protocol)}}}
+    #+cindex: logical addressing scheme
+    #+cindex: IP protocol
+    #+cindex: Internet layer
+    #+cindex: IP address
+    #+cindex: Address Resolution Protocol (ARP)
+    #+cindex: ARP
+    #+cindex: ARP table
+    #+cindex: table, linking physical address to logical address
+    TCP/IP therefore makes the physical address invisible, and instead
+    organizes the network around a logical, hierarchical addressing scheme.
+    This logical addressing scheme is maintained by the *IP protocol* at the
+    Internet layer.  The logical address is called the {{{dfn(IP address)}}}.
+    Another Internet layer protocol called {{{dfn(Address Resolution Protocol
+    (ARP))}}} assembles a table that maps IP addresses to physical addresses.
+    This ARP table is the link between the IP address and the physical address
+    associated with the network adaptor card.
+
+**** Strategy for Sending Data on the Network
+
+    On a *routed network*, the TCP/IP software uses the following strategy for
+    sending data on the network:
+
+    #+cindex: data, sending on a network
+    #+cindex: network segment
+    1. If the destination address is on the /same network segment/ as the
+       source computer, the source computer sends the packet directly to the
+       destination.  The IP address is resolved to a physical address using
+       ARP, and the data is directed to the destination network adaptor.
+
+    2. If the destination address is on a /different segment/ from the source
+       computer, the following process begins:
+
+       #+cindex: datagram, directed to a gateway
+       #+cindex: gateway
+       #+cindex: gateway address
+       #+cindex: address, gateway
+       - The datagram is directed to a gateway.  A {{{dfn(gateway}}} is a
+         device on the local network segmetn taht is capable of forwarding a
+         datagram to other network segments.  (A gateway is basically a
+         router.)  The gateway address is usually defined through a TCP/IP
+         configuration.  If you set up an Internet account with a static IP
+         address through an Internet service provider, the provider will tell
+         you what address to use for the gateway.  The gateway address is
+         resolved to a physical address using ARP, and the data is sent to the
+         gateway's network adapter.
+
+       - The datagram is routed through the gateway to a higher-level network
+         segment, where the process is repeated.  If the destination address is
+         on the new segment, the data is delivered to its destination.  If not,
+         the datagram is sent to another gateway.
+
+         #+cindex: gateways, chain
+       - The datagram passes through the chain of gateways to the destination
+         segment, where the dstination IP address is mapped to a physical
+         address using ARP and the data is directed to the destination network
+         adapter.
+
+
+    {{{subheading(Internet Layer Requirements)}}}
+    #+cindex: data, delivery
+    #+cindex: Internet layer protocols, requirements
+    To deliver data on a complex routed network, the Internet layer protocols
+    must therefore be able to:
+
+    #+cindex: identify, computer on network
+    #+cindex: message sending through network
+    - Identify any computer on the local network
+    - Provide a means for determining when a message must be sent through the
+      gateway
+    - Provide a hardware-independent means of identifying the destination
+      network segment so that the datagram will pass efficiently through the
+      routers to the correct segment
+    #+cindex: convert, logical IP address to physical address
+    - Provide a means for converting the logical IP address of the destination
+      computer to a physical address so that the data can be delivered to the
+      network adaptor of the destination computer
+
+
+**** IPv4 Addressing System
+
+    #+cindex: IPv4 addressing system
+    #+cindex: datagrams, delivery
+    #+cindex: ICMP protocol
+    #+cindex: error detection, Internet layer
+    #+cindex: troubleshooting, Internet layer
+    The most common version of IP is IPv4.  This secttion teaches about the
+    IPv4 addressing system.  It also teaches how TCP/IP delivers datagrams on a
+    complex network using the Internet layer's IP and ARP.  It also teaches
+    about the Internet layer's ICMP protocol, which provides error detection
+    and troubleshooting.
+
 *** Internet Protocol
 
 *** Address Resolution Protocol
@@ -2514,12 +2607,21 @@ process is complete without it.
   :END:
 
 ** Other Networking Models
+
+   #+cindex: models
+   #+cindex: four-layered model
+   #+cindex: model, four-layered
    The four-layered model is a common model for describing TCP/IP networking,
    but it is not the only model.
+   #+cindex: ARPAnet model
+   #+cindex: model, ARPAnet
+   #+cindex: RFC 871
    + ARPAnet model :: is described in RFC 871; it describes three layers:
      1. Network Interface layer
      2. Host-to-Host layer
      3. Process-Level/Applications layer
+   #+cindex: five-layer model
+   #+cindex: model, five-layer
    + Five-layer model :: has these layers
      1. Physical layer
      2. Data Link layer
@@ -2530,18 +2632,25 @@ process is complete without it.
                      Application layer
 
 
-
-
-
 ** Layers
-:CI:
-#+CINDEX: layer
-:END:
-   The term @@texinfo:@dfn{layer}@@ is used throughout the computer industry
-   for protocol component levels.  Header information is applied in layers to
-   the data as it passes through the components of the protocol stack.  When it
+
+   #+cindex: layer
+   #+cindex: protocol component levels
+   #+cindex: header information
+   #+cindex: protocol stack
+   The term {{{dfn(layer}}} is used throughout the computer industry for
+   protocol component levels.  Header information is applied in layers to the
+   data as it passes through the components of the protocol stack.  When it
    comes to the components themselves, however, the term /layer/ is somewhat
    metaphorical.
+
+** Internet Layer and OSI
+
+   #+cindex: Network layer, OSI model
+   #+cindex: OSI model, Network layer
+   #+cindex: Layer 3, OSI model
+   The Internet layer corresponds to the OSI /Network layer/, which is
+   sometimes called /Layer 3/.
 
 * Answers to Quizzes and Exercises
   :PROPERTIES:
