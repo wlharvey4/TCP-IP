@@ -2,10 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2019-01-16 Wed 16:48>
+#+DATE: <2019-01-16 Wed 17:06>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.5.1
+#+MACRO: VERSION 0.5.2
 
 * Part I    --- TCP/IP Basics
 
@@ -1795,6 +1795,41 @@ process is complete without it.
     problems that arise within your own IP address space.
 *** Addressing and Delivery
 
+    {{{heading(Review of Physical Addressing in Network Access Layer)}}}
+    #+cindex: network interface device
+    #+cindex: network adaptor card
+    #+cindex: physical address
+    #+cindex: ethernet card
+    #+cindex: frame
+    #+cindex: protocol stack
+    A computer communicates with the network through a /network interface
+    device/, such as a *network adaptor card*.  [[*Physical Addressing]]  The
+    network interface device has a /unique physical address/ and is designed to
+    receive data sent to that physical address.  A device such as an ethernet
+    card does not know any of the details of the upper protocol layers.  It
+    does not know its IP address or whether an incoming frame is being sent to
+    SSH or FTP.  It just listens to incoming frames, waits for a frame
+    addressed to its own physical address, and passes that frame up the
+    protocol stack.
+
+    {{{subheading(Small LAN Would Allow Physical Addressing)}}}
+    #+cindex: LAN segment, small
+    #+cindex: Network Access layer
+    This physical naddressing scheme works well on an individual LAN segment.
+    A network that consists of only a few computers on an uninterrupted medium
+    can function with nothing more than physical addresses.  Data can pass
+    directly from network adaptor to network adaptor using the low-level
+    protocols associated with the Network Access layer.
+
+    {{{heading(Routed Network Needs Logical Addressing)}}}
+    #+cindex: routed network
+    #+cindex: router interface
+    On a /routed network/, it is not possible to deliver data by physical
+    address.  The discovery procedure required for delivering by physical
+    address do not work across a router interface.  Even if they did work,
+    delivery by physical address would be cumbersome because the permanent
+    physical address built in to a network card does not allow you to impose a
+    logical structure on the address space.
 *** Internet Protocol
 
 *** Address Resolution Protocol
