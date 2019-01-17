@@ -2,10 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2019-01-06 Sun 10:13>
+#+DATE: <2019-01-16 Wed 16:48>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.5.0
+#+MACRO: VERSION 0.5.1
 
 * Part I    --- TCP/IP Basics
 
@@ -1727,13 +1727,24 @@ process is complete without it.
     + ARP
     + ICMP
 
-    Computers on a single network segment such as abn ethernet local area netork (LAN) can
+    #+cindex: ethernet LAN
+    #+cindex: physical address
+    #+cindex: protocol, Internet layer
+    #+cindex: communication, long distance
+    #+cindex: protocols, IP, ARP, ICMP
+    #+cindex: IP protocols
+    #+cindex: protocols, Internet layer
+    #+cindex: ARP protocol
+    #+cindex: ICMP protocol
+    Computers on a single network segment such as an ethernet local area netork (LAN) can
     communicate with each other using the physical addresses available at the Network Access
     layer.  How does an email message get from Carolina to California and arrive precisely at its
     destination?  The protocols at the *Internet layer* provide for delivery beyond the local
     network segment.  This section discusses the important *Internet layer* protocols /IP/, /ARP/,
     and /ICMP/.
 
+    #+cindex: IPv4 address
+    #+cindex: address, IPv4
     The focus of this section is on the 32-bit binary IPv4 addresses used throughout the Internet.
     The world is currently in transition to a new 128-bit address system known as IPv6, which
     offers enhanced capabilities and a much larger address space.  See Chapter 13, ``IPv6: The Next
@@ -1747,7 +1758,41 @@ process is complete without it.
     - Describe the contents of an IP header
     - Explain the purpose of the IP address
 
-*** IP Addresses
+*** IP Addresses --- A Little Context
+
+    #+cindex: IP addressing, assigning rules
+    #+cindex: assignment, IP addresses
+    #+cindex: rules, assigning IP addresses
+    #+cindex: networks, large routed
+    This section describes some /formal and systematic rules/ for *assigning IP
+    addresses to individual computers and devices* on large routed networks.
+    The rules are a fundamental part of the TCP/IP protocol system; you need to
+    understand IP addressing in order to understand TCP/IP.  The details of
+    assigning IP addresses are not as integral to the daily life of the average
+    user as they once were.
+
+    #+cindex: DHCP (server)
+    #+cindex: IP address assignment, automatic
+    #+cindex: Network Access Translation
+    #+cindex: Internet IP address hierarchy
+    #+cindex: packets, delivery
+    #+cindex: routing decisions
+    On today's networks, most computers receive an IP address automatically
+    through a DHCP server.  [[*What is DHCP?]]  /Network Address Translation/
+    techniques mean your local network no longer has to be a contiguous part of
+    the Internet IP address hierarchy.  Behind the scenese, the computers on
+    your network are still using these rules to deliver packets and make
+    routing decisions.
+
+    #+cindex: IP addressing, troubleshooting
+    #+cindex: troubleshooting, IP addressing
+    #+cindex: subnet, misconfigured
+    #+cindex: diagnose addressing problems
+    Knowledge of IP addressing is also important for troubleshooting.  Problems
+    often arise from misconfigured subnets or IP addresses.  In some cases, a
+    computer might not receive a correct address from the local DHCP server.  A
+    basic understanding of IP addressing will help you diagnose and fix
+    problems that arise within your own IP address space.
 *** Addressing and Delivery
 
 *** Internet Protocol
