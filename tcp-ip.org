@@ -2,10 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2019-01-16 Wed 18:42>
+#+DATE: <2019-04-22 Mon 18:42>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.5.3
+#+MACRO: VERSION 0.5.4
 
 * Part I    --- TCP/IP Basics
 
@@ -1323,11 +1323,12 @@ process is complete without it.
      - Airport wireless
 
 
+#+begin_comment
      #+caption: Mac OS X Network Configuration
      #+name: fig:network
-     #+attr_texinfo: :width 4in :options type=Image
+     #+attr_texinfo: :width 4in :options :alt MacOSX Network Configuration
      [[./images/Network.png]]
-
+#+end_comment
 
      #+cindex: IEEE 802.11 wireless LAN specification
      Airport wireless is an Apple-polished repackaging of the IEEE 802.11
@@ -1760,14 +1761,16 @@ process is complete without it.
 
 *** IP Addresses --- A Little Context
 
+{{{heading(IP Address Assignments on Large Routed Networks)}}}
+
     #+cindex: IP addressing, assigning rules
     #+cindex: assignment, IP addresses
     #+cindex: rules, assigning IP addresses
     #+cindex: networks, large routed
     This section describes some /formal and systematic rules/ for *assigning IP
     addresses to individual computers and devices* on large routed networks.
-    The rules are a fundamental part of the TCP/IP protocol system; you need to
-    understand IP addressing in order to understand TCP/IP.  The details of
+    The rules are a fundamental part of the TCP/IP protocol system; *you need
+    to understand IP addressing in order to understand TCP/IP*.  The details of
     assigning IP addresses are not as integral to the daily life of the average
     user as they once were.
 
@@ -1777,6 +1780,8 @@ process is complete without it.
     #+cindex: Internet IP address hierarchy
     #+cindex: packets, delivery
     #+cindex: routing decisions
+    #+CINDEX: network address translation (NAT)
+    #+CINDEX: NAT
     On today's networks, most computers receive an IP address automatically
     through a DHCP server.  [[*What is DHCP?]]  /Network Address Translation/
     techniques mean your local network no longer has to be a contiguous part of
@@ -1793,6 +1798,7 @@ process is complete without it.
     computer might not receive a correct address from the local DHCP server.  A
     basic understanding of IP addressing will help you diagnose and fix
     problems that arise within your own IP address space.
+
 *** Addressing and Delivery
 
     {{{heading(Review of Physical Addressing in Network Access Layer)}}}
@@ -1832,7 +1838,9 @@ process is complete without it.
     logical structure on the address space.
 
     {{{heading(IP Protocol --- Address Resolution Protocol)}}}
+    {{{subheading(Logical Hierarchical Addressing Scheme Maintained by IP Protocol)}}}
     #+cindex: logical addressing scheme
+    #+cindex: hierarchical addressing scheme
     #+cindex: IP protocol
     #+cindex: Internet layer
     #+cindex: IP address
@@ -1851,6 +1859,9 @@ process is complete without it.
 
 **** Strategy for Sending Data on the Network
 
+{{{heading(Sending Data on a Routed Network)}}}
+
+#+CINDEX:routed network
     On a *routed network*, the TCP/IP software uses the following strategy for
     sending data on the network:
 
@@ -1909,21 +1920,323 @@ process is complete without it.
       computer to a physical address so that the data can be delivered to the
       network adaptor of the destination computer
 
-
 **** IPv4 Addressing System
 
-    #+cindex: IPv4 addressing system
-    #+cindex: datagrams, delivery
-    #+cindex: ICMP protocol
-    #+cindex: error detection, Internet layer
-    #+cindex: troubleshooting, Internet layer
-    The most common version of IP is IPv4.  This secttion teaches about the
-    IPv4 addressing system.  It also teaches how TCP/IP delivers datagrams on a
-    complex network using the Internet layer's IP and ARP.  It also teaches
-    about the Internet layer's ICMP protocol, which provides error detection
-    and troubleshooting.
+#+cindex: IPv4 addressing system
+#+cindex: datagrams, delivery
+#+cindex: ICMP protocol
+#+cindex: error detection, Internet layer
+#+cindex: troubleshooting, Internet layer
+The most common version of IP is IPv4.  This section teaches about the IPv4
+addressing system.  It also teaches how TCP/IP delivers datagrams on a
+complex network using the Internet layer's IP and ARP.  It also teaches
+about the Internet layer's ICMP protocol, which provides error detection
+and troubleshooting.
+
+#+begin_cartouche
+The *internet layer* corresponds to the OSI *network* layer (sometimes called
+*Layer 3*.
+#+end_cartouche
 
 *** Internet Protocol
+#+CINDEX:Internet Protocol, dfn
+#+CINDEX:IP address, unique
+The {{{dfn(Internet Protocol (IP))}}} provides a hierarchical,
+hardware-independent addressing system.  It offers the services necessary for
+delivering data on a complex routed network.  Each network adaptor on a TCP/IP
+network has a unique IP address.
+
+#+CINDEX:host, dfn
+The term {{{dfn(host)}}} is often used for a network device associated with an
+IP address.
+
+IP addresses on the network are organized so that you can tell the location of
+the host---the network or subnet where the host resides---by looking at the
+address.  Part of the address is a little like a ZIP code (describing a general
+locatino) and part of the address is a little like the street address
+(describing an exact location with that general area).
+
+#+CINDEX:IP address, parts
+The IP address is divided in to two parts:
+- network ID
+- host ID
+
+
+#+CINDEX:network ID
+#+CINDEX:host ID
+The network must provide a means for determining which part of the IP address
+is the *network ID* and which part is the *host ID*.  There is no one
+solution.  Big networks must reserve a large number of host bits for their
+large number of hosts.  Small networks do not need many bits to give each host
+a unique ID; however, the vast number of small netowrks means that more bits of
+the IP address are necessary for the network ID.
+
+{{{heading(Subnetting with Address Classes)}}}
+
+#+CINDEX:address classes
+#+CINDEX:Class A,B,C
+The original solution to this problem was to divide the IP address space into a
+series of *address classes*.
+
+- Class A networks used the first 8 bits fo the address for the /network ID/;
+- Class B used the first 16 bits;
+- Class C networks used the first 24 bits.
+
+
+#+CINDEX:subnetting
+This feature was extended through a feature called *subnetting* to provide
+greater control at the local level for structuring the network.
+
+{{{heading(CIDR)}}}
+
+#+CINDEX:Classless Inter-Domain Routing (CIDR)
+#+CINDEX:CIDR
+A more recent technique know as *Classless Inter-Domain Routing (CIDR)*
+essentially renders the address class system unnecessary.  CIDR offers a
+simple, flexible, and unambiguous notation for specifying how many bits belong
+with the network ID.
+
+{{{heading(Ultimate Purpose of Subnetting)}}}
+
+The purpose of these notation schemes is the same: to divide the IP address
+into a *network ID* and a *host ID*.
+
+**** IP Header Fields
+#+CINDEX:IP header
+Every IP datagram begins with an IP header.  The TCP/IP software on the source
+computer constructs the IP header.  The TCP/IP software at the destination uses
+the information enclosed in the IP header to process the datagram.
+
+The IP header contains a great deal of information, including
+- the IP addresses of the source and destination computers,
+- the length of the datagram,
+- the IP version number, and
+- special instructions to routers.
+
+
+For additional information about IP headers, see [[https://tools.ietf.org/html/rfc791][RFC 791]].
+
+#+caption:A summary of the contents of the internet header plus data
+#+caption:IP-header-format
+#+begin_example
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|Version|  IHL  |Type of Service|          Total Length         |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         Identification        |Flags|      Fragment Offset    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Time to Live |    Protocol   |         Header Checksum       |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                       Source Address                          |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Destination Address                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                    Options                    |    Padding    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                             data                              |
+\                             ...                               \
+|                             data                              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+#+end_example
+
+**** IP Addressing
+#+CINDEX:IP address, dfn
+#+CINDEX:octet, dfn
+#+CINDEX:dotted-decimal format, dfn
+An {{{dfn(IP address)}}} is a 32-bit binary address.  This 32-bit address is
+subdivided into four 8-bit segments called {{{dfn(octets)}}}.  The IP address
+is expressed in what is called {{{dfn(dotted-decimal)}}} format.  Each octot is
+given as an equivalent decimal number.  The four decimal values
+(@@texinfo:@math{4 x 8 = 32}@@ bits) are then separated with periods.  Eight
+binary bits can represent any whole number from 0 to 255, soi the segments of a
+dotted-decimal address are decimal numbers from 0 to 255.  A dotted decimal IP
+address looks like this: =209.121.131.14=.
+
+{{{heading(Subnetting)}}}
+
+Part of the IP address is used for the network ID, and part of the address is
+used for the host ID.
+
+{{{subheading(Address Class System)}}}
+
+#+CINDEX:address class system
+#+CINDEX:Class A, B, C
+The address class system divides the IP address space into address classes.
+Most IP addresses fall into the following classes:
+
+- Class A addresses ::
+
+     The first 8 bits of the IP address are used for the network ID.  The final
+     24 bits are used for the host ID.  Provides a small number of possible
+     netowrk IDs and a huge number of possible host IDs for each network.  A
+     Class A network can support approximately {{{math(2^{24} = 16\,777\,216)}}}
+     hosts.
+
+- Class B addresses ::
+
+     The first 16 bits of the IP address are used for the network ID.  The
+     final 16 bits are used for the host ID.
+
+- Class C addresses ::
+
+     The first 24 bits of the IP address are used for the network ID.  The
+     final 8 bits are used for the host ID.  Thus can provide host IDs for only
+     a small number of hosts(254, which is {{{math(2^8 = 256 - 2)}}}, that is,
+     minus the unusable all 0s nad all 1s addresses), but many more
+     combinations of network IDs are available.
+
+
+How does a computer or router know whether to interpret an IP address as a
+Class A, Class B, or Class C address?  The designers of TCP/IP wrote the
+address rules such that the class of an address is obvious from the address
+itself.  The first few bits of the binary address specify whether teh address
+should be interpreted as a Class A, Class B, or Class C address.  The rules for
+interpreting addresses are as follows:
+
+- if the 32-bit binary address starts with a =0= bit, the address is a Class A
+  address;
+- if the 32-bit binary address starts with the bits =10=, the address is a
+  Class B address;
+- if the 32-bit binary address starts with the bits =110=, the address is a
+  Class C address.
+
+
+These rules have the effect of limiting the range of values for the first term
+in the dotted-decimal address.  Because a Class A dotted-decimal address must
+have a =0= bit in the leftmost place of the first octet, the first term in a
+Class A dotted decimal address cannot be higher than =127=.
+
+The table shows the address ranges for Class A, B, and C networks.  Some
+address ranges are listed as excluded addresses.  Certain IP addresses are not
+assigned to networks because they are reserved for special uses.
+
+#+CINDEX:Class D, E special purpose
+#+CINDEX:multicast
+The Internet specifications also define special-purpose Class D and Class E
+addresses.  Class D addresses are used for multicasting.  A
+{{{dfn(multicast)}}} is a single message sent to a subset of the network, as
+opposed to a broadcast.   Class E networks are considered experimental and are
+not normally used in production environments.
+
+#+caption:Address Ranges for Class A, B, and C Networks
+#+name:tab:class-address-ranges
+| Address Class | Binary Address Begins With | First Term Dotted-Decimal | Excluded Addresses              |
+|               | <l>                        |                           |                                 |
+|---------------+----------------------------+---------------------------+---------------------------------|
+| A             | 0                          | 0 to 127                  | 10.0.0.0 to 10.255.255.255      |
+|               |                            |                           | 127.0.0.0 to 127.255.255.255    |
+| B             | 10                         | 128 to 191                | 172.16.0.0. to 172.31.255.255   |
+| C             | 110                        | 192 to 223                | 192.168.0.0. to 192.168.255.255 |
+| D             | 1110                       | 224 to 238                |                                 |
+| E             | 11110                      | 240 to 247                |                                 |
+|---------------+----------------------------+---------------------------+---------------------------------|
+
+{{{heading(Creating Subnets)}}}
+
+#+CINDEX:subnets
+#+CINDEX:subnetting
+The owner of a network can divide the network into smaller subnetworks called
+{{{dfn(subnets)}}}.  Subnetting essentially borrows some of the bits of the
+host ID to create additional networks within the network.  Class A and B
+networks, with their large host ID address spaces, make extensive use of
+subnetting.  Subnetting is also used on Class C networks.
+
+**** Converting a 32-bit Binary Address to Dotted-Decimal Format
+
+{{{heading(A Binary Octet)}}}
+
+: 1 0 1 1 0 1 1 1 Base 2
+
+- 128's place {{{math(1 x 2^8 = 128)}}}
+- 64's place {{{math(0 x 2^7 = 0)}}}
+- 32's place {{{math(1 x 2^6 = 32)}}}
+- 16's place {{{math(1 x 2^5 = 16)}}}
+- 8's place {{{math(0 x 2^4 = 0)}}}
+- 4's place {{{math(1 x 2^2 = 4)}}}
+- 2's place {{{math(1 x 2^1 = 2)}}}
+- 1-s place {{{math(1 x 2^0 = 1)}}}
+
+: 183 Base 10
+
+{{{heading(An IP Address has 4 Binary Octets)}}}
+
+Convert the binary address to its decimal equivalent:
+: 0101100100011101110011000001100
+
+1. break the address into 8-bit octets:
+   - Octet 1: =01011001=
+   - Octet 2: =00011101=
+   - Octet 3: =11001100=
+   - Octet 4: =00011000=
+2. convert each octet to a decimal number.
+   - =01011001=: {{{math(1 + 8 + 16 + 64 = 89)}}}
+   - =00011101=: {{{math(1 + 4 + 8 + 16 = 29)}}}
+   - =11001100=: {{{math(4 + 8 + 64 + 128 = 204)}}}
+   - =00011000=: {{{math(8 + 16 = 24)}}}
+3. write out the decimal equivalent values in order from left to right,
+   separating them by dots:
+   : 89.29.204.24
+
+**** Converting a Decimal Number to a Binary Octet
+
+Divide the number by 2 until you get 0; record the remainder with each
+division.  The remainders will form the binary equivalent, with the first
+remainder in the one's place, and the following remainders in successively
+higher terms.
+
+Convert 207 to binary:
+
+- {{{math(207/2 = 103 + 1 \arrow 1)}}} one's place
+- {{{math(103/2 = 51 + 1 \arrow 1)}}}
+- {{{math(51/2 = 25 + 1 \arrow 1)}}}
+- {{{math(12/2 = 6 + 0 \arrow 0)}}}
+- {{{math(6/2 = 3 + 0 \arrow 0)}}}
+- {{{math(3/2 = 1 + 1 \arrow 1)}}}
+- {{{math(1/2 = 0 + 1 \arrow 1)}}} 128's place
+
+: 207 Base 10 = 1100111 Base 2
+
+**** Special IP Addresses
+
+#+CINDEX:special IP addresses
+#+CINDEX:IP addresses, special
+A few IP addresses have special meaning and are not assigned to specific
+hosts.
+
+- An all-0's host ID refers to the network itself.  The IP address
+  =129.152.0.0= refers to the Class B network with the network ID =129.152=.
+
+  #+CINDEX:broadcast
+- An all-1's host ID signifies a broadcast.  A {{{dfn(broadcase)}}} is a
+  message sent to all hosts on the network.  The IP address =129.152.255.255=
+  is the broadcast address for the Class B network with the network ID
+  =129.152=.
+
+- The address =255.255=255.255= can also be used for broadcase on the network.
+
+  #+CINDEX:loopback address
+- Addresses beginning with the decimal number =127= are {{{dfn(loopback)}}}
+  addresses.  A message addressed to a loopback address is sent by the local
+  TCP/IP software to itself.  The loopback address is used to verify that the
+  TCP/IP software is functioniong.  The loopback address =127.0.0.1= is
+  commonly used.
+
+- RFC 1597 (updated with RFC 1918) reserves some IP address ranges for private
+  networks.  These private address ranges are often used for the protected
+  network behind Network Address Translation (NAT) devices.
+  - =10.0.0.0= to =10.255.255.255=
+  - =172.16.0.0= to =172.31.255.255=
+  - =192.168.0.0= to =192.168.255.255=
+    #+cindex: Zeroconf
+  - =169.254.0.0= to =169.255.255.255= is reserved for autoconfiguration
+    (Zeroconf).
+
+
+The complete address range is available for any network.  A network
+administrator using these private addresses has more room for subnetting, and
+many more assignable addresses.  Internet service providers sometimes place
+their entire network on a private address range.
 
 *** Address Resolution Protocol
 
@@ -2732,6 +3045,7 @@ process is complete without it.
   #+macro: dfn @@texinfo:@dfn{@@$1@@texinfo:}@@
   #+macro: cartouche @@texinfo:@noindent@sansserif{@@$1@@texinfo:}@@
   #+macro: NI @@texinfo:@noindent @@
+  #+macro: math @@texinfo:@math{$1}@@
 
 * Settings                                                         :noexport:
 #+TEXINFO_FILENAME:tcp-ip.info
