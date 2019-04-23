@@ -2,10 +2,10 @@
 
 #+TITLE: All About TCP/IP
 #+AUTHOR: WLHarvey4
-#+DATE: <2019-04-22 Mon 18:42>
+#+DATE: <2019-04-23 Tue 12:24>
 #+SUBTITLE: And Networking
 #+SUBTITLE: Version {{{VERSION}}} {{{time(%F %R)}}}
-#+MACRO: VERSION 0.5.4
+#+MACRO: VERSION 0.6.0
 
 * Part I    --- TCP/IP Basics
 
@@ -2239,10 +2239,279 @@ many more assignable addresses.  Internet service providers sometimes place
 their entire network on a private address range.
 
 *** Address Resolution Protocol
+#+CINDEX:Address Resolution Protocol (ARP), main
+#+CINDEX:ARP
+The computers on a local network us an Internet latyer protocol called *Address
+Resolution Protocol (ARP)* to map IP addresses to physical addresses.  A host
+must know the physical address of the destination network adapter to send any
+data to it.  For this reason, ARP is an important protocol.
 
+TCP/IP is implemented in such a way that ARP and all the details of physical
+address translation are almost totally invisible to the user.  As far as the
+user is concerned, a network adaptor is identified by its IP address.  Behind
+the scenes the IP address must be mapped to a physical address for a message to
+reach its destination.
+
+#+CINDEX:ARP table, cache
+#+CINDEX:broadcast, ARP request frame
+#+CINDEX:ARP request frame broadcast
+#+CINDEX:request frame, ARP broadcast
+Each host on a network segment maintains a table in memory called the ARP
+table, or ARP cache.  The ARP cache associates the IP addresses of other hosts
+on the network segment with physical addresses.  When a host needs to send data
+to another host on the segment, the host checks the ARP cache to determine the
+physical address of the recipient.  The ARP cache is assembled dynamically.  If
+the address that is to receive the data is not currently listed in the ARP
+cache, the host sends a broadcast called an ARP request frame.
+
+The ARP request frame contains the unresolved IP address.  It also contains the
+IP address and physical address of the host that sent the request.  The other
+hosts on the network segment receive the ARP request, and the host that owns
+the unresolved IP address responds by sending its physical address to the host
+that sent the request.  The newly resolved IP address-to-physical address
+mapping is then added to the ARP cache of the requesting host.
+
+The entries in the ARP cache expire after a predetermined period.  When the
+lifetime of an ARP entry expires, the entry is removed from the table.  The
+resolution process begins again the next time the host needs to send data to
+the IP address of the expired entry.
 *** Reverse ARP
+#+CINDEX:RARP
+#+CINDEX:Reverse ARP (RARP), main
+#+CINDEX:BOOTP protocol
+*RARP* stands for Reverse ARP.  RARP is the opposite of ARP.  ARP is used when
+the IP address is know but the physical address is not know.  RARP is used when
+the physical address is known but the IP address is not know.  RARP is often
+used in conjunction with the BOOTP protocol to book diskless workstations.
+
+**** BOOTP---Boot PROM
+Many network adapters contain an empty socket for insertion of an integrated
+circuit known as a boot PROM.  The boot PROM firmware starts as soon as the
+computer is powered on.  It loads an operating system into the computer by
+reading it from a network server instead of a local disk drive.  The operating
+system downloaded to the BOOTP device is preconfigured for a specific IP address.
 
 *** Internet Control Message Protocol
+#+CINDEX:Internet Control Message Protocol (ICMP), dfn
+#+CINDEX:ICMP
+#+CINDEX:errors, IP
+Data sent to a remote computer often travel one or more routers; these routers
+can encounter a number of problems in sending the message to its ultimate
+destination.  Routers use {{{dfn(Internet Control Message Protocol (ICMP))}}}
+messages to notify the source IP of these problems.  ICMP is also used for
+other diagnosis and troubleshooting function.
+
+#+CINDEX:ICMP messages
+The most common ICMP messages:
+
+- =Echo Request and Reply= ::
+
+     The ~ping~ command sends a datagram to an IP address and requests the
+     destination computer to return the data sent in a response datagram.  The
+     commands actually used by ~pint~ are the ICMP =Echo= and =Echo Reply=.
+
+- =Source Quench= ::
+
+                   A message to the source IP asking it to slow down the rate
+                   at which it is shippint data.
+
+- =Destination Unreachable= ::
+
+     If a reouter receives a datagram that cannot be delivered, ICMP returns a
+     =Destination Unreachable= message to the source IP.
+
+- =Time Exceeded= ::
+
+                   #+CINDEX:routing loop, dfn
+                   #+CINDEX:loop, routing
+                   ICMP sends this messgae to the source IP if a datagram is
+                   discarded because TTL reaches 0.  This indicates that the
+                   destination is too many router hops away to reach with the
+                   current TTL value, or it indicates router table problems
+                   that cause the datagram to loop.  A {{{dfn(routing loop)}}}
+                   occurs when a datagram circulates endlessly and never
+                   reaches it destination.
+
+- =Fragmentation Needed= ::
+
+     ICMP sends this message if it receives a datagram with the =Don't
+     Fragment= bit set, and if the router needs to fragment the datagram to
+     forward it to the next router or the destination.
+
+*** Summary of Internet Layer Protocols
+The Internet layer protocols:
+
+- IP :: 
+
+        IP provides a hardware-independent addressing system for deliverying
+        data over the network.
+
+- ARP ::
+
+         a protocol that resolves IP addresses to physical addresses.
+
+- RARP ::
+
+         the reverse of ARP; a protocol that lets a diskless computer query a
+          server for its own IP address.
+
+- ICMP ::
+
+          a protocol used for diagnosis and testing.
+
+
+Address formats:
+
+- binary
+- dotted-decimal
+
+
+Address classes:
+
+- Class A
+- Class B
+- Class C
+- Class D
+- Class E
+
+**** Questions and Answers for Internet Layer Protocols
+- Q1. ::
+
+       What common address notation is used to simplify a 32-bit binary address?
+
+- A1. ::
+
+       Dotted-decimal notation.
+
+- Q2. ::
+
+       ARP returns what type of information when given an IP address?
+
+- A2. ::
+
+         The corresonding physical (MAC) address.
+
+- Q3. ::
+
+         If a router is unable to keep up with the volume of traffic, what type
+         of ICMP message is sent to the source IP?
+
+- A3: ::
+
+         A =Source Quench= message.
+
+- Q4. ::
+
+         Waht class does an IP address belong to that starts with the binary
+         pattern =110= as the 3 leftmost bits?
+
+- A4. ::
+
+         A Class C network.
+
+**** Workshop
+
+***** Quiz
+
+1. What is the purpose of the TTL field in the IP header?
+2. How big are the network and host ID fields for a Class address?
+3. What is an octet?
+4. Waht is the IP address an address of?
+5. Waht is the difference between ARP and RARP?
+
+***** Exercises
+
+1. Convert the following binary octets to their decimal numnber equivalents:
+
+   - =00101011=
+   - =01010001=
+   - =11010110=
+   - =10110111=
+   - =01001010=
+   - =10001101=
+   - =11011110=
+
+2. Convert the following decimal numbers to their binary-octet equivalents:
+
+   - 13
+   - 184
+   - 238
+   - 37
+   - 98
+   - 161
+   - 243
+   - 189
+
+3. Convert the following 32-bit IP addresses into dotted-decimal notation:
+
+   - =11001111 00001110 00100001 01011100=
+   - =00001010 00001101 01011001 01001101=
+   - =10111101 10010011 01010101 01100001=
+
+**** Key Terms
+- Address Class ::
+
+                   A classification system for IP addresses.  The network class
+                   determines how the address is subdivided into a network ID
+                   and a host ID.
+
+- Address Resolution Protocol (ARP) ::
+
+     A key Internet layer protocol used to obtain the physical address
+     associated with an IP address.  ARP maintains a cache of recently resolved
+     physical address-to-IP address pairs.
+
+- BOOTP ::
+
+           A protocol used to boot a computer other network device from a
+           remote located.
+
+- Dotted-Decimal ::
+
+                    Base 10 representation of a binary IP address using 4
+                    numerals representing the 4 octets of the original address,
+                    separated by periods (=209.121.131.14=).
+
+- Host ID ::
+
+             A protion of the IP address taht refers to a node on the network.
+             Each node within a network should have an IP address that contains
+             a uniqu host ID.
+
+- Interet Control Message Protocol (ICMP) ::
+
+     A key Internet layer protocol used by routers to send messages that inform
+     the source IP of routing problems.  ICMP is also used b the ~ping~ command
+     to determine the status of other hosts on the network.
+
+- Internet Protocol (IP) ::
+
+     A key Internet layer protocol used for addressing, deliverying, and
+     routing datagrams.
+
+- Multicast ::
+
+               A technique that allows datagrams to be delivered to a group of
+               hosts simultaneously.
+
+- Network ID ::
+
+                A portion of the IP address that identifies the network.
+
+- Octet ::
+
+           An eight-digit binary number.
+
+- Reverse Address Resolution Protocol (RARP) ::
+
+     A TCP/IP protocol that returns an IP address if given a physical address.
+     This protocol is typically used by a diskless workstation that has a
+     remote boot PROM installed in its network adaptor.
+
+- Subnet ::
+
+            A logical division of a TCP/IP address space.
+
 
 ** Subnetting and CIDR
 
